@@ -49,14 +49,15 @@
                 </button>
         </ion-row>
         <div>
-            <ion-row bottom *ngFor="let item of kidList" (click)="goToEditKidDetails(item)">
+            <ion-row *ngIf="kidList; else loading">
+                <button *ngFor="let item of kidList" (click)="goToShowKidClasses(item)">
                 <button ion-button block id="list-row">
                     
                     <ion-col col-3  ion-item  id="col-avatar">
                             {{ item.kidID }}
-                            <ion-avatar item-left no-padding >
+                            <div ion-avatar item-left no-padding >
                                     <img src="assets/imgs/geeta.jpg">   
-                                </ion-avatar>
+                            </div>
                         
                         
                     
@@ -74,8 +75,12 @@
                     </ion-col>
                     
                 </button>
+                </button>
 
             </ion-row>
+            <ng-template #loading>
+                <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
+            </ng-template>
         </div>
 
     </ion-grid>

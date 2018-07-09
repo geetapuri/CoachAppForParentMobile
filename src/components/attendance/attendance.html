@@ -7,33 +7,66 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
-    <div padding>
-        <button ion-button (click)="getKids()">Show Kids </button>
+    <ion-grid>
+        <ion-row>
+            <button ion-button block>
+                                <ion-col col-3>
+                                    KID ID
+                                </ion-col>
+                                <ion-col col-4>
+                                    KID NAME
+                                </ion-col>
+                                <ion-col col-5>
+                                    GROUP NAME ID
+                                </ion-col>
+                            </button>
+        </ion-row>
+        <div>
+            <ion-row *ngIf="kidsList; else loading">
+                <button *ngFor="let item of kidsList" (click)="getAttendanceForKid(item)">
+                            <button ion-button block id="list-row">
+                                
+                                <ion-col col-3  ion-item  id="col-avatar">
+                                        {{ item.kidID }}
+                                        <ion-avatar item-left no-padding >
+                                                <img src="assets/imgs/geeta.jpg">   
+                                            </ion-avatar>
+                                        
+                                    
+                                
+                                </ion-col>
+                        
+                                <ion-col col-4>
+            
+                                    {{ item.kidName }}<br>
+            
+                                </ion-col>
+                                <ion-col col-5>
+            
+                                    {{ item.groupName }} {{item.groupID}}
+            
+                                </ion-col>
+                                
+                            </button>
+                </button>
+
+            </ion-row>
+            <ng-template #loading>
+                <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
+            </ng-template>
+        </div>
+
+    </ion-grid>
+
+    <button padding ion-button block id="card-name" *ngIf=selectedKid>
+                    {{selectedKid}}
+    
+        </button>
 
 
 
-
-    </div>
-    <ion-item *ngIf="selectedKid">
-
-        <ion-select [(ngModel)]="selectedKid" (ionChange)=onItemSelection(selectedKid)>
-            <ion-option [value]="item" *ngFor="let item of kidsList">{{item.kidName}} ({{item.kidID}})
-            </ion-option>
-        </ion-select>
-
-
-    </ion-item>
-
-    <ion-item *ngIf="selectedKid">
-
-        <button ion-button (click)="getAttendanceForKid(selectedKid)" icon-right>Show
-              <ion-icon name="stats"></ion-icon>
-          </button>
-
-
-    </ion-item>
 
     <ion-card *ngFor="let item of attendanceList">
         <ion-card-header>

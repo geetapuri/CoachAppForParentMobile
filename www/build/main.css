@@ -25678,6 +25678,27 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+attendance #list-row {
+  background: #689efc;
+}
+
+attendance #border {
+  border: 1px solid #ff0000;
+}
+
+attendance #col-avatar {
+  background: #689efc;
+}
+
+attendance ion-avatar img {
+  width: auto !important;
+  height: auto !important;
+}
+
+attendance #card-name {
+  background: #84b0f1;
+}
+
 fees #list-row {
   background: #689efc;
 }
@@ -25696,7 +25717,7 @@ fees ion-avatar img {
 }
 
 fees #card-name {
-  background: #689efc;
+  background: #5f85c7;
 }
 
 show-class-info-kid [col-1] {

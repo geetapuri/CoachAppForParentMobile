@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { MarkAttendanceComponent } from '../mark-attendance/mark-attendance';
@@ -13,7 +13,11 @@ import { MarkAttendanceComponent } from '../mark-attendance/mark-attendance';
   selector: 'attendance',
   templateUrl: 'attendance.html'
 })
-export class AttendanceComponent {
+export class AttendanceComponent implements OnInit{
+  ngOnInit (){
+    console.log("calling getKids");
+    this.getKids();
+  }
 
   text: string;
   public kidsList;
@@ -33,18 +37,18 @@ export class AttendanceComponent {
 
 
   getKids(){
-    //Get Kids list in a dropdown
     console.log("in getKids");
     this.springData.getKidInfoParent(this.parent).subscribe(
       data => {
 
         this.kidsList= data.kidList;
-        this.selectedKid= data.kidList[0];
+        //this.selectedKid= data.kidList[0];
 
       },
       err => console.error(err),
       () => console.log('getKidInfoParent completed')
     );
+
 
   }
   public onItemSelection(selection){
@@ -63,6 +67,7 @@ export class AttendanceComponent {
 
 
   getAttendanceForKid(item){
+    this.selectedKid= item.kidName;
     this.springData.viewAttendanceForKid(item).subscribe(
       data => {
 

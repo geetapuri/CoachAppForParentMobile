@@ -24,8 +24,9 @@
                     </button>
         </ion-row>
         <div>
-            <ion-row bottom *ngFor="let item of kidsList" (click)="getFeesForKid(item)">
-                <button ion-button block id="list-row">
+            <ion-row *ngIf="kidsList; else loading">
+                <button *ngFor="let item of kidsList" (click)="getFeesForKid(item)">
+                    <button ion-button block id="list-row">
                         
                         <ion-col col-3  ion-item  id="col-avatar">
                                 {{ item.kidID }}
@@ -49,31 +50,47 @@
                         </ion-col>
                         
                     </button>
+                </button>
 
             </ion-row>
+            <ng-template #loading>
+                <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
+            </ng-template>
         </div>
 
     </ion-grid>
 
 
 
-    <ion-card id="card-name" *ngIf=selectedKid>
-        {{selectedKid}}
-    </ion-card>
+
+
+    <button padding ion-button block id="card-name" *ngIf=selectedKid>
+                {{selectedKid}}
+
+    </button>
+
+
 
     <ion-card *ngFor="let item of feeList">
         <ion-card-header>
-            {{ item.dateOfAttendance }}
+            {{ item.dateOfAttendance | date }}
         </ion-card-header>
         <ion-card-content>
-            Attendance {{ item.present }}
+
+            Attendance :
+            <div style="font-weight: bold;"> {{ item.present }}</div>
 
         </ion-card-content>
         <ion-card-content>
-            Fee Paid {{ item.feePaid }}
+            Fee Paid :
+            <div style="font-weight: bold;"> {{ item.feePaid }}</div>
 
         </ion-card-content>
+
     </ion-card>
+    <ng-template #loading2>
+        <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
+    </ng-template>
 
 
 </ion-content>

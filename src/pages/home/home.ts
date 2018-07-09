@@ -103,10 +103,11 @@ export class HomePage implements OnInit{
 
   }
 
-  goToEditKidDetails(selectedKid) {
-    console.log("edit kid");
+  goToShowKidClasses(selectedKid) {
+    console.log("Show kid Classes, calling ShowClassInfoComponent now");
     this.navCtrl.push(ShowClassInfoKidComponent, {selectedKid:selectedKid, parent:this.parent, user:this.user});
   }
+  
 
 
 

@@ -51,7 +51,7 @@
     <ion-card text-wrap>
         <ion-card-header>
             Schedule for
-            <div *ngIf="selectedDate; else originalDate">{{selectedDate}}</div>
+            <div *ngIf="selectedDate; else originalDate">{{selectedDate | date}}</div>
             <ng-template #originalDate>{{myDate | date}} </ng-template>
             <br> {{kid.kidName}}
         </ion-card-header>
@@ -65,7 +65,7 @@
         <ion-card-content>
 
             <ion-list *ngFor="let item of scheduleForDate">
-                At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date}}
+                At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date | date}}
             </ion-list>
         </ion-card-content>
 

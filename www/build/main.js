@@ -4,6 +4,119 @@ webpackJsonp([0],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_schedule_schedule__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_attendance_attendance__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_fees_fees__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_kids_kids__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_performance_performance__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_groups_groups__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_progress2_progress2__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_show_class_info_kid_show_class_info_kid__ = __webpack_require__(216);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(springData, navCtrl, navParams) {
+        this.springData = springData;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.user = navParams.get('role');
+        this.parent = navParams.get('parent');
+        console.log('received on home page, username = ' + this.user);
+    }
+    HomePage.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log("will call get parentID");
+        this.springData.getParentID(this.user).subscribe(function (data) {
+            console.log("in subscribe to data of getParentID");
+            _this.parent = data.parent;
+            console.log("parent id received as : " + data.parent[0].parentID);
+            console.log("parent = " + _this.parent[0].parentID);
+            console.log("now get kids list");
+            _this.getKidsList();
+        }, function (err) { return console.error(err); }, function () {
+            return console.log('getParentID completed');
+        });
+    };
+    HomePage.prototype.goToSchedule = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__components_schedule_schedule__["a" /* ScheduleComponent */], { parent: this.parent });
+    };
+    HomePage.prototype.goToAttendance = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__components_attendance_attendance__["a" /* AttendanceComponent */], { parent: this.parent });
+    };
+    HomePage.prototype.goToFees = function () {
+        console.log("calling FeeComponent");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__components_fees_fees__["a" /* FeesComponent */], { parent: this.parent });
+    };
+    HomePage.prototype.getKids = function () {
+        console.log("in kids");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__components_kids_kids__["a" /* KidsComponent */], { parent: this.parent });
+    };
+    HomePage.prototype.goToManageGroups = function () {
+        console.log("manage groups");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__components_groups_groups__["a" /* GroupsComponent */]);
+    };
+    HomePage.prototype.goToPerformance = function () {
+        console.log("in performance");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__components_performance_performance__["a" /* PerformanceComponent */]);
+    };
+    HomePage.prototype.goToEvents = function () {
+        console.log("in events");
+        //this.navCtrl.push(EventsComponent);
+    };
+    HomePage.prototype.goToProgress = function () {
+        console.log("in progress");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_9__components_progress2_progress2__["a" /* Progress2Component */]);
+    };
+    HomePage.prototype.getKidsList = function () {
+        var _this = this;
+        //get all the kids list from DB first
+        this.springData.getKidInfoParent(this.parent).subscribe(function (data) {
+            _this.kidList = data.kidList;
+        }, function (err) { return console.error(err); }, function () { return console.log('getKidsList   completed'); });
+    };
+    HomePage.prototype.goToShowKidClasses = function (selectedKid) {
+        console.log("edit kid");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__components_show_class_info_kid_show_class_info_kid__["a" /* ShowClassInfoKidComponent */], { selectedKid: selectedKid, parent: this.parent, user: this.user });
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/pages/home/home.html"*/'<ion-header id="home-header">\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/axar.png"> Parents\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content padding>\n    <ion-grid>\n        <ion-row>\n            <ion-col col-6>\n                <div>\n                    Welcome to the Parent App\n                </div>\n            </ion-col>\n            <ion-col ion-item block>\n\n\n\n                <ion-avatar item-left>\n                    <img src="assets/imgs/geeta.jpg">\n                </ion-avatar>\n\n\n\n\n\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n\n\n\n    <ion-grid>\n        <ion-row>\n            <button ion-button block>\n                    <ion-col col-3>\n                        KID ID\n                    </ion-col>\n                    <ion-col col-4>\n                        KID NAME\n                    </ion-col>\n                    <ion-col col-5>\n                        GROUP NAME ID\n                    </ion-col>\n                </button>\n        </ion-row>\n        <div>\n            <ion-row *ngIf="kidList; else loading">\n                <button *ngFor="let item of kidList" (click)="goToShowKidClasses(item)">\n                <button ion-button block id="list-row">\n                    \n                    <ion-col col-3  ion-item  id="col-avatar">\n                            {{ item.kidID }}\n                            <div ion-avatar item-left no-padding >\n                                    <img src="assets/imgs/geeta.jpg">   \n                            </div>\n                        \n                        \n                    \n                    </ion-col>\n                \n                    <ion-col col-4>\n\n                        {{ item.kidName }}<br>\n\n                    </ion-col>\n                    <ion-col col-5>\n\n                        {{ item.groupName }} {{item.groupID}}\n\n                    </ion-col>\n                    \n                </button>\n                </button>\n\n            </ion-row>\n            <ng-template #loading>\n                <ion-spinner name="bubbles">Loading Kids...</ion-spinner>\n            </ng-template>\n        </div>\n\n    </ion-grid>\n\n\n\n\n\n\n\n\n\n    <div padding>\n        <button ion-button block (click)="goToFees()">Fees</button>\n    </div>\n\n    <div padding>\n        <button ion-button block (click)="goToAttendance()">Attendance</button>\n    </div>\n\n    <div padding>\n        <button ion-button block (click)="goToProgress()">Progress</button>\n    </div>\n\n    <div padding>\n        <button ion-button block (click)="goToPerformance()">Performance</button>\n    </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 105:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AttendanceComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
@@ -37,13 +150,16 @@ var AttendanceComponent = /** @class */ (function () {
         this.text = 'Hello World';
         this.parent = this.navParams.get('parent');
     }
+    AttendanceComponent.prototype.ngOnInit = function () {
+        console.log("calling getKids");
+        this.getKids();
+    };
     AttendanceComponent.prototype.getKids = function () {
         var _this = this;
-        //Get Kids list in a dropdown
         console.log("in getKids");
         this.springData.getKidInfoParent(this.parent).subscribe(function (data) {
             _this.kidsList = data.kidList;
-            _this.selectedKid = data.kidList[0];
+            //this.selectedKid= data.kidList[0];
         }, function (err) { return console.error(err); }, function () { return console.log('getKidInfoParent completed'); });
     };
     AttendanceComponent.prototype.onItemSelection = function (selection) {
@@ -57,24 +173,26 @@ var AttendanceComponent = /** @class */ (function () {
     };
     AttendanceComponent.prototype.getAttendanceForKid = function (item) {
         var _this = this;
+        this.selectedKid = item.kidName;
         this.springData.viewAttendanceForKid(item).subscribe(function (data) {
             _this.attendanceList = data.attendance;
         }, function (err) { return console.error(err); }, function () { return console.log('viewAttendanceKid completed'); });
     };
     AttendanceComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'attendance',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/'<!-- Generated template for the AttendanceComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/parent.png"> ATTENDANCE\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <div padding>\n        <button ion-button (click)="getKids()">Show Kids </button>\n\n\n\n\n    </div>\n    <ion-item *ngIf="selectedKid">\n\n        <ion-select [(ngModel)]="selectedKid" (ionChange)=onItemSelection(selectedKid)>\n            <ion-option [value]="item" *ngFor="let item of kidsList">{{item.kidName}} ({{item.kidID}})\n            </ion-option>\n        </ion-select>\n\n\n    </ion-item>\n\n    <ion-item *ngIf="selectedKid">\n\n        <button ion-button (click)="getAttendanceForKid(selectedKid)" icon-right>Show\n              <ion-icon name="stats"></ion-icon>\n          </button>\n\n\n    </ion-item>\n\n    <ion-card *ngFor="let item of attendanceList">\n        <ion-card-header>\n            DATE {{ item.date }}\n        </ion-card-header>\n        <ion-card-content>\n            ATTENDANCE : {{ item.presentAbsent }}\n\n        </ion-card-content>\n    </ion-card>\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/
+            selector: 'attendance',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/'<!-- Generated template for the AttendanceComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/parent.png"> ATTENDANCE\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-grid>\n        <ion-row>\n            <button ion-button block>\n                                <ion-col col-3>\n                                    KID ID\n                                </ion-col>\n                                <ion-col col-4>\n                                    KID NAME\n                                </ion-col>\n                                <ion-col col-5>\n                                    GROUP NAME ID\n                                </ion-col>\n                            </button>\n        </ion-row>\n        <div>\n            <ion-row *ngIf="kidsList; else loading">\n                <button *ngFor="let item of kidsList" (click)="getAttendanceForKid(item)">\n                            <button ion-button block id="list-row">\n                                \n                                <ion-col col-3  ion-item  id="col-avatar">\n                                        {{ item.kidID }}\n                                        <ion-avatar item-left no-padding >\n                                                <img src="assets/imgs/geeta.jpg">   \n                                            </ion-avatar>\n                                        \n                                    \n                                \n                                </ion-col>\n                        \n                                <ion-col col-4>\n            \n                                    {{ item.kidName }}<br>\n            \n                                </ion-col>\n                                <ion-col col-5>\n            \n                                    {{ item.groupName }} {{item.groupID}}\n            \n                                </ion-col>\n                                \n                            </button>\n                </button>\n\n            </ion-row>\n            <ng-template #loading>\n                <ion-spinner name="bubbles">Loading Kids...</ion-spinner>\n            </ng-template>\n        </div>\n\n    </ion-grid>\n\n    <button padding ion-button block id="card-name" *ngIf=selectedKid>\n                    {{selectedKid}}\n    \n        </button>\n\n\n\n\n    <ion-card *ngFor="let item of attendanceList">\n        <ion-card-header>\n            DATE {{ item.date }}\n        </ion-card-header>\n        <ion-card-content>\n            ATTENDANCE : {{ item.presentAbsent }}\n\n        </ion-card-content>\n    </ion-card>\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
     ], AttendanceComponent);
     return AttendanceComponent;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=attendance.js.map
 
 /***/ }),
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -143,12 +261,11 @@ var FeesComponent = /** @class */ (function () {
     };
     FeesComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'fees',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/'<!-- Generated template for the FeesComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/parent.png"> FEES\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n\n\n    <ion-grid>\n        <ion-row>\n            <button ion-button block>\n                        <ion-col col-3>\n                            KID ID\n                        </ion-col>\n                        <ion-col col-4>\n                            KID NAME\n                        </ion-col>\n                        <ion-col col-5>\n                            GROUP NAME ID\n                        </ion-col>\n                    </button>\n        </ion-row>\n        <div>\n            <ion-row bottom *ngFor="let item of kidsList" (click)="getFeesForKid(item)">\n                <button ion-button block id="list-row">\n                        \n                        <ion-col col-3  ion-item  id="col-avatar">\n                                {{ item.kidID }}\n                                <ion-avatar item-left no-padding >\n                                        <img src="assets/imgs/geeta.jpg">   \n                                    </ion-avatar>\n                            \n                            \n                        \n                        </ion-col>\n                    \n                        <ion-col col-4>\n    \n                            {{ item.kidName }}<br>\n    \n                        </ion-col>\n                        <ion-col col-5>\n    \n                            {{ item.groupName }} {{item.groupID}}\n    \n                        </ion-col>\n                        \n                    </button>\n\n            </ion-row>\n        </div>\n\n    </ion-grid>\n\n\n\n    <ion-card id="card-name" *ngIf=selectedKid>\n        {{selectedKid}}\n    </ion-card>\n\n    <ion-card *ngFor="let item of feeList">\n        <ion-card-header>\n            {{ item.dateOfAttendance }}\n        </ion-card-header>\n        <ion-card-content>\n            Attendance {{ item.present }}\n\n        </ion-card-content>\n        <ion-card-content>\n            Fee Paid {{ item.feePaid }}\n\n        </ion-card-content>\n    </ion-card>\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/
+            selector: 'fees',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/'<!-- Generated template for the FeesComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/parent.png"> FEES\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n\n\n    <ion-grid>\n        <ion-row>\n            <button ion-button block>\n                        <ion-col col-3>\n                            KID ID\n                        </ion-col>\n                        <ion-col col-4>\n                            KID NAME\n                        </ion-col>\n                        <ion-col col-5>\n                            GROUP NAME ID\n                        </ion-col>\n                    </button>\n        </ion-row>\n        <div>\n            <ion-row *ngIf="kidsList; else loading">\n                <button *ngFor="let item of kidsList" (click)="getFeesForKid(item)">\n                    <button ion-button block id="list-row">\n                        \n                        <ion-col col-3  ion-item  id="col-avatar">\n                                {{ item.kidID }}\n                                <ion-avatar item-left no-padding >\n                                        <img src="assets/imgs/geeta.jpg">   \n                                    </ion-avatar>\n                            \n                            \n                        \n                        </ion-col>\n                    \n                        <ion-col col-4>\n    \n                            {{ item.kidName }}<br>\n    \n                        </ion-col>\n                        <ion-col col-5>\n    \n                            {{ item.groupName }} {{item.groupID}}\n    \n                        </ion-col>\n                        \n                    </button>\n                </button>\n\n            </ion-row>\n            <ng-template #loading>\n                <ion-spinner name="bubbles">Loading Kids...</ion-spinner>\n            </ng-template>\n        </div>\n\n    </ion-grid>\n\n\n\n\n\n    <button padding ion-button block id="card-name" *ngIf=selectedKid>\n                {{selectedKid}}\n\n    </button>\n\n\n\n    <ion-card *ngFor="let item of feeList">\n        <ion-card-header>\n            {{ item.dateOfAttendance | date }}\n        </ion-card-header>\n        <ion-card-content>\n\n            Attendance :\n            <div style="font-weight: bold;"> {{ item.present }}</div>\n\n        </ion-card-content>\n        <ion-card-content>\n            Fee Paid :\n            <div style="font-weight: bold;"> {{ item.feePaid }}</div>\n\n        </ion-card-content>\n\n    </ion-card>\n    <ng-template #loading2>\n        <ion-spinner name="bubbles">Loading Kids...</ion-spinner>\n    </ng-template>\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
     ], FeesComponent);
     return FeesComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=fees.js.map
@@ -161,7 +278,7 @@ var FeesComponent = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GetDataFromSpringProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -494,7 +611,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -507,11 +624,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 117;
+webpackEmptyAsyncContext.id = 118;
 
 /***/ }),
 
-/***/ 158:
+/***/ 159:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -524,20 +641,20 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 158;
+webpackEmptyAsyncContext.id = 159;
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_home__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_home__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(204);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -589,120 +706,6 @@ var LoginComponent = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=login.js.map
-
-/***/ }),
-
-/***/ 205:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_schedule_schedule__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_attendance_attendance__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_fees_fees__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_kids_kids__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_performance_performance__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_groups_groups__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_progress2_progress2__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_show_class_info_kid_show_class_info_kid__ = __webpack_require__(216);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(springData, navCtrl, navParams) {
-        this.springData = springData;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.user = navParams.get('role');
-        this.parent = navParams.get('parent');
-        console.log('received on home page, username = ' + this.user);
-    }
-    HomePage.prototype.ngOnInit = function () {
-        var _this = this;
-        console.log("will call get parentID");
-        this.springData.getParentID(this.user).subscribe(function (data) {
-            console.log("in subscribe to data of getParentID");
-            _this.parent = data.parent;
-            console.log("parent id received as : " + data.parent[0].parentID);
-            console.log("parent = " + _this.parent[0].parentID);
-            console.log("now get kids list");
-            _this.getKidsList();
-        }, function (err) { return console.error(err); }, function () {
-            return console.log('getParentID completed');
-        });
-    };
-    HomePage.prototype.goToSchedule = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__components_schedule_schedule__["a" /* ScheduleComponent */], { parent: this.parent });
-    };
-    HomePage.prototype.goToAttendance = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__components_attendance_attendance__["a" /* AttendanceComponent */], { parent: this.parent });
-    };
-    HomePage.prototype.goToFees = function () {
-        console.log("calling FeeComponent");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__components_fees_fees__["a" /* FeesComponent */], { parent: this.parent });
-    };
-    HomePage.prototype.getKids = function () {
-        console.log("in kids");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__components_kids_kids__["a" /* KidsComponent */], { parent: this.parent });
-    };
-    HomePage.prototype.goToManageGroups = function () {
-        console.log("manage groups");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__components_groups_groups__["a" /* GroupsComponent */]);
-    };
-    HomePage.prototype.goToPerformance = function () {
-        console.log("in performance");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__components_performance_performance__["a" /* PerformanceComponent */]);
-    };
-    HomePage.prototype.goToEvents = function () {
-        console.log("in events");
-        //this.navCtrl.push(EventsComponent);
-    };
-    HomePage.prototype.goToProgress = function () {
-        console.log("in progress");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_9__components_progress2_progress2__["a" /* Progress2Component */]);
-    };
-    HomePage.prototype.getKidsList = function () {
-        var _this = this;
-        //get all the kids list from DB first
-        this.springData.getKidInfoParent(this.parent).subscribe(function (data) {
-            _this.kidList = data.kidList;
-        }, function (err) { return console.error(err); }, function () { return console.log('getKidsList   completed'); });
-    };
-    HomePage.prototype.goToEditKidDetails = function (selectedKid) {
-        console.log("edit kid");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__components_show_class_info_kid_show_class_info_kid__["a" /* ShowClassInfoKidComponent */], { selectedKid: selectedKid, parent: this.parent, user: this.user });
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/pages/home/home.html"*/'<ion-header id="home-header">\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/axar.png"> Parents\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content padding>\n    <ion-grid>\n        <ion-row>\n            <ion-col col-6>\n                <div>\n                    Welcome to the Parent App\n                </div>\n            </ion-col>\n            <ion-col ion-item block>\n\n\n\n                <ion-avatar item-left>\n                    <img src="assets/imgs/geeta.jpg">\n                </ion-avatar>\n\n\n\n\n\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n\n\n\n    <ion-grid>\n        <ion-row>\n            <button ion-button block>\n                    <ion-col col-3>\n                        KID ID\n                    </ion-col>\n                    <ion-col col-4>\n                        KID NAME\n                    </ion-col>\n                    <ion-col col-5>\n                        GROUP NAME ID\n                    </ion-col>\n                </button>\n        </ion-row>\n        <div>\n            <ion-row bottom *ngFor="let item of kidList" (click)="goToEditKidDetails(item)">\n                <button ion-button block id="list-row">\n                    \n                    <ion-col col-3  ion-item  id="col-avatar">\n                            {{ item.kidID }}\n                            <ion-avatar item-left no-padding >\n                                    <img src="assets/imgs/geeta.jpg">   \n                                </ion-avatar>\n                        \n                        \n                    \n                    </ion-col>\n                \n                    <ion-col col-4>\n\n                        {{ item.kidName }}<br>\n\n                    </ion-col>\n                    <ion-col col-5>\n\n                        {{ item.groupName }} {{item.groupID}}\n\n                    </ion-col>\n                    \n                </button>\n\n            </ion-row>\n        </div>\n\n    </ion-grid>\n\n\n\n\n\n\n\n\n\n    <div padding>\n        <button ion-button block (click)="goToFees()">Fees</button>\n    </div>\n\n    <div padding>\n        <button ion-button block (click)="goToAttendance()">Attendance</button>\n    </div>\n\n    <div padding>\n        <button ion-button block (click)="goToProgress()">Progress</button>\n    </div>\n\n    <div padding>\n        <button ion-button block (click)="goToPerformance()">Performance</button>\n    </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/pages/home/home.html"*/
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
-    ], HomePage);
-    return HomePage;
-    var _a, _b, _c;
-}());
-
-//# sourceMappingURL=home.js.map
 
 /***/ }),
 
@@ -930,7 +933,7 @@ var MarkAttendanceComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__attendance_attendance__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__attendance_attendance__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1039,7 +1042,7 @@ var MarkAttendanceForGroupComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fees_fees__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fees_fees__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1383,7 +1386,7 @@ var Progress2Component = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__kids_kids__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(104);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1567,12 +1570,11 @@ var ShowClassInfoKidComponent = /** @class */ (function () {
     };
     ShowClassInfoKidComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'show-class-info-kid',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/'<!-- Generated template for the EditKidComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/axar.png"> CLASS DETAILS\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-card>\n        <div class="calendar-header">\n            <ion-row class="calendar-month">\n                <ion-col col-2 (click)="goToLastMonth()">\n                    <ion-icon name="arrow-back"></ion-icon>\n                </ion-col>\n                <ion-col col-8>{{currentMonth}} {{currentYear}}</ion-col>\n                <ion-col col-2 (click)="goToNextMonth()">\n                    <ion-icon name="arrow-forward"></ion-icon>\n                </ion-col>\n            </ion-row>\n        </div>\n        <div class="calendar-body">\n            <ion-grid>\n                <ion-row class="calendar-weekday">\n                    <ion-col>Su</ion-col>\n                    <ion-col>Mo</ion-col>\n                    <ion-col>Tu</ion-col>\n                    <ion-col>We</ion-col>\n                    <ion-col>Th</ion-col>\n                    <ion-col>Fr</ion-col>\n                    <ion-col>Sa</ion-col>\n                </ion-row>\n                <ion-row class="calendar-date">\n                    <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>\n                    <ion-col col-1 id="col-{{day}}" *ngFor="let day of daysInThisMonth" (click)="clickedDate(day)">\n                        <span class="currentDate" *ngIf="currentDate === day; else otherDate">{{day}}</span>\n                        <ng-template #otherDate class="otherDate">{{day}}</ng-template>\n                    </ion-col>\n                    <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>\n                </ion-row>\n            </ion-grid>\n        </div>\n\n    </ion-card>\n\n\n    <ion-card text-wrap>\n        <ion-card-header>\n            Schedule for\n            <div *ngIf="selectedDate; else originalDate">{{selectedDate}}</div>\n            <ng-template #originalDate>{{myDate | date}} </ng-template>\n            <br> {{kid.kidName}}\n        </ion-card-header>\n        <ion-card-content>\n            KID ID {{kid.kidID}}\n        </ion-card-content>\n        <ion-card-content>\n            GROUP {{kid.groupName}} ({{kid.groupID}})\n        </ion-card-content>\n\n        <ion-card-content>\n\n            <ion-list *ngFor="let item of scheduleForDate">\n                At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date}}\n            </ion-list>\n        </ion-card-content>\n\n\n        <ion-card-content>\n            <button padding ion-button (click)="backToHome()" icon-only>\n            <ion-icon name="home" ></ion-icon>\n        </button>\n        </ion-card-content>\n\n    </ion-card>\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/
+            selector: 'show-class-info-kid',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/'<!-- Generated template for the EditKidComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/axar.png"> CLASS DETAILS\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-card>\n        <div class="calendar-header">\n            <ion-row class="calendar-month">\n                <ion-col col-2 (click)="goToLastMonth()">\n                    <ion-icon name="arrow-back"></ion-icon>\n                </ion-col>\n                <ion-col col-8>{{currentMonth}} {{currentYear}}</ion-col>\n                <ion-col col-2 (click)="goToNextMonth()">\n                    <ion-icon name="arrow-forward"></ion-icon>\n                </ion-col>\n            </ion-row>\n        </div>\n        <div class="calendar-body">\n            <ion-grid>\n                <ion-row class="calendar-weekday">\n                    <ion-col>Su</ion-col>\n                    <ion-col>Mo</ion-col>\n                    <ion-col>Tu</ion-col>\n                    <ion-col>We</ion-col>\n                    <ion-col>Th</ion-col>\n                    <ion-col>Fr</ion-col>\n                    <ion-col>Sa</ion-col>\n                </ion-row>\n                <ion-row class="calendar-date">\n                    <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>\n                    <ion-col col-1 id="col-{{day}}" *ngFor="let day of daysInThisMonth" (click)="clickedDate(day)">\n                        <span class="currentDate" *ngIf="currentDate === day; else otherDate">{{day}}</span>\n                        <ng-template #otherDate class="otherDate">{{day}}</ng-template>\n                    </ion-col>\n                    <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>\n                </ion-row>\n            </ion-grid>\n        </div>\n\n    </ion-card>\n\n\n    <ion-card text-wrap>\n        <ion-card-header>\n            Schedule for\n            <div *ngIf="selectedDate; else originalDate">{{selectedDate | date}}</div>\n            <ng-template #originalDate>{{myDate | date}} </ng-template>\n            <br> {{kid.kidName}}\n        </ion-card-header>\n        <ion-card-content>\n            KID ID {{kid.kidID}}\n        </ion-card-content>\n        <ion-card-content>\n            GROUP {{kid.groupName}} ({{kid.groupID}})\n        </ion-card-content>\n\n        <ion-card-content>\n\n            <ion-list *ngFor="let item of scheduleForDate">\n                At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date | date}}\n            </ion-list>\n        </ion-card-content>\n\n\n        <ion-card-content>\n            <button padding ion-button (click)="backToHome()" icon-only>\n            <ion-icon name="home" ></ion-icon>\n        </button>\n        </ion-card-content>\n\n    </ion-card>\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
     ], ShowClassInfoKidComponent);
     return ShowClassInfoKidComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=show-class-info-kid.js.map
@@ -1602,22 +1604,22 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(293);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_login_login__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_login_login__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_schedule_schedule__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_add_schedule_add_schedule__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_get_schedule_get_schedule__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_edit_schedule_details_edit_schedule_details__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_attendance_attendance__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_attendance_attendance__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_mark_attendance_mark_attendance__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_mark_attendance_for_group_mark_attendance_for_group__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_fees_fees__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_fees_fees__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_pay_fees_pay_fees__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_manage_classes_manage_classes__ = __webpack_require__(296);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_kids_kids__ = __webpack_require__(52);
@@ -1771,9 +1773,9 @@ var AppModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_login_login__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_login_login__ = __webpack_require__(205);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
