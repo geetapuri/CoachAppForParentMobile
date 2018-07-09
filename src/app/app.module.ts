@@ -21,7 +21,7 @@ import { FeesComponent } from '../components/fees/fees';
 import { PayFeesComponent } from '../components/pay-fees/pay-fees';
 import { ManageClassesComponent } from '../components/manage-classes/manage-classes';
 import { KidsComponent } from '../components/kids/kids';
-import { EditKidComponent } from '../components/edit-kid/edit-kid';
+//import { EditKidComponent } from '../components/edit-kid/edit-kid';
 import { AddKidComponent } from '../components/add-kid/add-kid';
 import { ClassesComponent } from '../components/classes/classes';
 import { AddClassesComponent } from '../components/add-classes/add-classes';
@@ -30,7 +30,7 @@ import { AddGroupsComponent } from '../components/add-groups/add-groups';
 import { EditGroupsComponent } from '../components/edit-groups/edit-groups';
 import { PerformanceComponent } from '../components/performance/performance';
 import { Progress2Component } from '../components/progress2/progress2';
-
+import { ShowClassInfoKidComponent } from '../components/show-class-info-kid/show-class-info-kid';
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 
@@ -57,14 +57,14 @@ export class XhrInterceptor implements HttpInterceptor {
     PayFeesComponent,
     ManageClassesComponent,
     KidsComponent,
-    EditKidComponent,
+    //EditKidComponent,
     AddKidComponent,
     ClassesComponent,
     AddClassesComponent,
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent, 
-    
+    ShowClassInfoKidComponent,
     PerformanceComponent,
     Progress2Component
   ],
@@ -90,14 +90,14 @@ export class XhrInterceptor implements HttpInterceptor {
     PayFeesComponent,
     ManageClassesComponent,
     KidsComponent,
-    EditKidComponent,
+    //EditKidComponent,
     AddKidComponent,
     ClassesComponent,
     AddClassesComponent,
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent, 
-    
+    ShowClassInfoKidComponent,
     PerformanceComponent,
     Progress2Component
     

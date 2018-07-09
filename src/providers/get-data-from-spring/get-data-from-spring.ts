@@ -136,18 +136,35 @@ export class GetDataFromSpringProvider {
 
   }
 
-  getSchedule(myDate){
+  getScheduleAll(myDate){
     console.log("in show schedule");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'parentID': '1'
+        
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-
+      
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getCalendarAll`, body, {headers: headers})
+     return this.http.post(`/getCalendarKidDate`, body, {headers: headers})
+      .map(data => data.json());
+  }
+
+  getSchedule(myDate, kidID){
+    console.log("in show schedule");
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = {
+        'kidID': kidID,
+        'date' : myDate
+      }
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+      console.log("sending date as : " + body.date);
+      console.log("sending kidID as " + body.kidID);
+      //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+     return this.http.post(`/getCalendarKidDate`, body, {headers: headers})
       .map(data => data.json());
   }
 

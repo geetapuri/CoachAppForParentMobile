@@ -1,7 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
-import { EditKidComponent } from '../edit-kid/edit-kid';
+//import { EditKidComponent } from '../edit-kid/edit-kid';
 import { AddKidComponent } from '../add-kid/add-kid';
 
 /**
@@ -51,9 +51,9 @@ ngOnInit(){
 
   }
 
-  goToEditKidDetails(selectedKid) {
+  /*goToEditKidDetails(selectedKid) {
     console.log("edit kid");
     this.navCtrl.push(EditKidComponent, {selectedKid:selectedKid, parent:this.parent});
-  }
+  }*/
 
 }

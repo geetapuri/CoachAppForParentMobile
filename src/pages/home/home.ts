@@ -13,6 +13,7 @@ import { ManageClassesComponent } from '../../components/manage-classes/manage-c
 import { ClassesComponent} from '../../components/classes/classes';
 import { GroupsComponent} from '../../components/groups/groups';
 import { Progress2Component} from '../../components/progress2/progress2';
+import { ShowClassInfoKidComponent} from '../../components/show-class-info-kid/show-class-info-kid';
 
 @Component({
   selector: 'page-home',
@@ -28,19 +29,26 @@ export class HomePage implements OnInit{
         this.parent= data.parent;
         console.log("parent id received as : " + data.parent[0].parentID);
         console.log("parent = " + this.parent[0].parentID);
+        console.log("now get kids list");
+        this.getKidsList();
       },
       err => console.error(err),
       () =>
         console.log('getParentID completed'),
     );
+
+
+
   }
 
   public user;
   public parent;
+  public kidList;
 
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     this.user= navParams.get('role');
+    this.parent= navParams.get('parent');
     console.log('received on home page, username = ' + this.user);
   }
   goToSchedule(){
@@ -53,6 +61,7 @@ export class HomePage implements OnInit{
 
   }
   goToFees(){
+    console.log("calling FeeComponent");
 
     this.navCtrl.push(FeesComponent, {parent:this.parent});
   }
@@ -77,6 +86,28 @@ export class HomePage implements OnInit{
     console.log("in progress");
     this.navCtrl.push(Progress2Component);
   }
+
+  getKidsList(){
+    //get all the kids list from DB first
+    this.springData.getKidInfoParent(this.parent).subscribe(
+      data => {
+
+
+        this.kidList= data.kidList;
+
+      },
+      err => console.error(err),
+      () => console.log('getKidsList   completed')
+    );
+
+
+  }
+
+  goToEditKidDetails(selectedKid) {
+    console.log("edit kid");
+    this.navCtrl.push(ShowClassInfoKidComponent, {selectedKid:selectedKid, parent:this.parent, user:this.user});
+  }
+
 
 
 }

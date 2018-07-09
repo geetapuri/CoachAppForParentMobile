@@ -16,7 +16,7 @@ import { MarkAttendanceForGroupComponent } from '../mark-attendance-for-group/ma
 export class MarkAttendanceComponent implements OnInit{
   ngOnInit(){
     console.log("will call get Schedule");
-    this.springData.getSchedule(this.myDate).subscribe(
+    this.springData.getScheduleAll(this.myDate).subscribe(
       data => {
         console.log("in subscribe to data of getGroups");
 

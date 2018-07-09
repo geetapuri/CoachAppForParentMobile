@@ -136,18 +136,19 @@ export class GetDataFromSpringProvider {
 
   }
 
-  getSchedule(myDate){
+  getSchedule(myDate, kidID){
     console.log("in show schedule");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-       'parentID': '1'
+        'kidID': kidID,
+        'date' : myDate
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`https://coachingapp-203705.appspot.com/getCalendarAll`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getCalendarKidDate`, body, {headers: headers})
       .map(data => data.json());
   }
   
@@ -162,7 +163,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`https://coachingapp-203705.appspot.com/getCalendarAllKid`, body, {headers: headers})
+     return this.http.post(`/getCalendarAllKid`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -309,7 +310,7 @@ export class GetDataFromSpringProvider {
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`https://coachingapp-203705.appspot.com/getKidInfoParent`, body, {headers: headers})
+  return this.http.post(`https://coachingapp-203705.appspot.com/getKidInfo`, body, {headers: headers})
     .map(data => data.json());
   }
 
@@ -347,7 +348,6 @@ updateGroup(group){
   return this.http.post(`https://coachingapp-203705.appspot.com/updateGroup`, body, {headers: headers})
     .map(data => data.json());
 }
-
 getParentID(user){
   console.log("In getParentID ");
   let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -360,9 +360,8 @@ getParentID(user){
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
     console.log("sending parent name as : " + user);
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`https://coachingapp-203705.appspot.com/getParentID`, body, {headers: headers})
+  return this.http.post(`/getParentID`, body, {headers: headers})
     .map(data => data.json());
 }
-
 
 }

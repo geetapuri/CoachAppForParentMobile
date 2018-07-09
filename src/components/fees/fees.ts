@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { PayFeesComponent} from '../pay-fees/pay-fees';
@@ -13,7 +13,14 @@ import { PayFeesComponent} from '../pay-fees/pay-fees';
   selector: 'fees',
   templateUrl: 'fees.html'
 })
-export class FeesComponent {
+export class FeesComponent implements OnInit{
+  ngOnInit (){
+    console.log("calling getKids");
+    this.getKids();
+  }
+
+
+  
 
   text: string;
   public selectedKid;
@@ -27,13 +34,15 @@ export class FeesComponent {
     this.parent = this.navParams.get('parent');
   }
 
+  
+
   getKids(){
     console.log("in getKids");
     this.springData.getKidInfoParent(this.parent).subscribe(
       data => {
 
         this.kidsList= data.kidList;
-        this.selectedKid= data.kidList[0];
+        //this.selectedKid= data.kidList[0];
 
       },
       err => console.error(err),
@@ -50,6 +59,7 @@ export class FeesComponent {
   }
 
 getFeesForKid(item){
+  this.selectedKid= item.kidName;
   this.springData.viewFeesForKid(item).subscribe(
     data => {
 

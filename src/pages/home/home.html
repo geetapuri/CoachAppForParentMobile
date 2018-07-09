@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header id="home-header">
     <ion-navbar>
         <ion-title>
-            CoachKids For Parents
+            <img alt="logo" height="40" src="assets/imgs/axar.png"> Parents
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -11,36 +11,22 @@
 <ion-content padding>
     <ion-grid>
         <ion-row>
-            <ion-col col-auto>
-                <img src="assets/imgs/parent.png" class="logo">
+            <ion-col col-6>
+                <div>
+                    Welcome to the Parent App
+                </div>
             </ion-col>
-            <ion-col>
-                <ion-row>
-                    <ion-col></ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col></ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col></ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col col-auto>
-                        
-                        <button ion-item block >
-                            <ion-avatar item-left>
-                                <img src="assets/imgs/geeta.jpg">
-                            </ion-avatar>
-                            WELCOME {{user}} 
-                        
-                        </button>
-                    </ion-col>
-
-                </ion-row>
+            <ion-col ion-item block>
 
 
-            </ion-col>
-            <ion-col>
+
+                <ion-avatar item-left>
+                    <img src="assets/imgs/geeta.jpg">
+                </ion-avatar>
+
+
+
+
 
             </ion-col>
         </ion-row>
@@ -48,14 +34,63 @@
 
 
 
-    <div padding>
-        <button ion-button block (click)="getKids()">Kids</button>
-    </div>
+    <ion-grid>
+        <ion-row>
+            <button ion-button block>
+                    <ion-col col-3>
+                        KID ID
+                    </ion-col>
+                    <ion-col col-4>
+                        KID NAME
+                    </ion-col>
+                    <ion-col col-5>
+                        GROUP NAME ID
+                    </ion-col>
+                </button>
+        </ion-row>
+        <div>
+            <ion-row bottom *ngFor="let item of kidList" (click)="goToEditKidDetails(item)">
+                <button ion-button block id="list-row">
+                    
+                    <ion-col col-3  ion-item  id="col-avatar">
+                            {{ item.kidID }}
+                            <ion-avatar item-left no-padding >
+                                    <img src="assets/imgs/geeta.jpg">   
+                                </ion-avatar>
+                        
+                        
+                    
+                    </ion-col>
+                
+                    <ion-col col-4>
+
+                        {{ item.kidName }}<br>
+
+                    </ion-col>
+                    <ion-col col-5>
+
+                        {{ item.groupName }} {{item.groupID}}
+
+                    </ion-col>
+                    
+                </button>
+
+            </ion-row>
+        </div>
+
+    </ion-grid>
+
+
+
+
+
+
+
+
 
     <div padding>
-        <button ion-button block (click)="goToSchedule()">Classes {{user}}</button>
+        <button ion-button block (click)="goToFees()">Fees</button>
     </div>
-
 
     <div padding>
         <button ion-button block (click)="goToAttendance()">Attendance</button>
@@ -70,11 +105,9 @@
     </div>
 
 
-    <div padding>
-        <button ion-button block (click)="goToFees()">Fees</button>
-    </div>
 
-    
+
+
 
 
 

@@ -13,16 +13,17 @@ import { MarkAttendanceComponent } from './mark-attendance/mark-attendance';
 import { MarkAttendanceForGroupComponent } from './mark-attendance-for-group/mark-attendance-for-group';
 import { PayFeesComponent } from './pay-fees/pay-fees';
 import { ManageClassesComponent } from './manage-classes/manage-classes';
-import { EditKidComponent } from './edit-kid/edit-kid';
+//import { EditKidComponent } from './edit-kid/edit-kid';
 import { AddKidComponent } from './add-kid/add-kid';
 import { ClassesComponent } from './classes/classes';
 import { AddClassesComponent } from './add-classes/add-classes';
 import { GroupsComponent } from './groups/groups';
 import { AddGroupsComponent } from './add-groups/add-groups';
 import { EditGroupsComponent } from './edit-groups/edit-groups';
-
+//import { ShowClassInfoKidComponent } from './show-class-info-kid/show-class-info-kid';
 import { Progress2Component } from './progress2/progress2';
-
+import { ShowClassInfoKidComponent } from './show-class-info-kid/show-class-info-kid';
+import { HomePage } from './../pages/home/home';
 @NgModule({
 	declarations: [ScheduleComponent,
     AttendanceComponent,
@@ -38,14 +39,15 @@ import { Progress2Component } from './progress2/progress2';
     MarkAttendanceForGroupComponent,
     PayFeesComponent,
     ManageClassesComponent,
-    EditKidComponent,
+    //EditKidComponent,
+    HomePage,
     AddKidComponent,
     ClassesComponent,
     AddClassesComponent,
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent,
-    ProgressComponent,
+    ShowClassInfoKidComponent,    
     Progress2Component],
 	imports: [],
 	exports: [ScheduleComponent,
@@ -62,14 +64,15 @@ import { Progress2Component } from './progress2/progress2';
     MarkAttendanceForGroupComponent,
     PayFeesComponent,
     ManageClassesComponent,
-    EditKidComponent,
+    //EditKidComponent,
+    HomePage,
     AddKidComponent,
     ClassesComponent,
     AddClassesComponent,
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent,
-   
+    ShowClassInfoKidComponent,    
     Progress2Component]
 })
 export class ComponentsModule {}

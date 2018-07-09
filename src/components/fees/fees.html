@@ -7,39 +7,69 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <div padding>
-        <button ion-button (click)="getKids()">Show Kids</button>
-
-    </div>
-
-    <ion-item *ngIf="selectedKid">
-
-        <ion-select [(ngModel)]="selectedKid" (ionChange)=onItemSelection(selectedKid)>
-            <ion-option [value]="item" *ngFor="let item of kidsList">{{item.kidName}} ({{item.kidID}})
-            </ion-option>
-        </ion-select>
 
 
-    </ion-item>
+    <ion-grid>
+        <ion-row>
+            <button ion-button block>
+                        <ion-col col-3>
+                            KID ID
+                        </ion-col>
+                        <ion-col col-4>
+                            KID NAME
+                        </ion-col>
+                        <ion-col col-5>
+                            GROUP NAME ID
+                        </ion-col>
+                    </button>
+        </ion-row>
+        <div>
+            <ion-row bottom *ngFor="let item of kidsList" (click)="getFeesForKid(item)">
+                <button ion-button block id="list-row">
+                        
+                        <ion-col col-3  ion-item  id="col-avatar">
+                                {{ item.kidID }}
+                                <ion-avatar item-left no-padding >
+                                        <img src="assets/imgs/geeta.jpg">   
+                                    </ion-avatar>
+                            
+                            
+                        
+                        </ion-col>
+                    
+                        <ion-col col-4>
+    
+                            {{ item.kidName }}<br>
+    
+                        </ion-col>
+                        <ion-col col-5>
+    
+                            {{ item.groupName }} {{item.groupID}}
+    
+                        </ion-col>
+                        
+                    </button>
+
+            </ion-row>
+        </div>
+
+    </ion-grid>
 
 
 
-    <ion-item *ngIf="selectedKid">
-
-        <button ion-button (click)="getFeesForKid(selectedKid)" icon-right>Show Fees
-              <ion-icon name="stats"></ion-icon>
-          </button>
-    </ion-item>
+    <ion-card id="card-name" *ngIf=selectedKid>
+        {{selectedKid}}
+    </ion-card>
 
     <ion-card *ngFor="let item of feeList">
         <ion-card-header>
-            Date {{ item.dateOfAttendance }}
+            {{ item.dateOfAttendance }}
         </ion-card-header>
         <ion-card-content>
             Attendance {{ item.present }}
 
         </ion-card-content>
-        <ion-card-content >
+        <ion-card-content>
             Fee Paid {{ item.feePaid }}
 
         </ion-card-content>

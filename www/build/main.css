@@ -25677,3 +25677,124 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+fees #list-row {
+  background: #689efc;
+}
+
+fees #border {
+  border: 1px solid #ff0000;
+}
+
+fees #col-avatar {
+  background: #689efc;
+}
+
+fees ion-avatar img {
+  width: auto !important;
+  height: auto !important;
+}
+
+fees #card-name {
+  background: #689efc;
+}
+
+show-class-info-kid [col-1] {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 8.33333%;
+  -ms-flex: 0 0 8.33333%;
+  flex: 0 0 14.285714285714286%;
+  width: 14.285714285714286%;
+  max-width: 14.285714285714286%;
+}
+
+show-class-info-kid .col {
+  text-align: center;
+  padding: 5px;
+}
+
+show-class-info-kid .last-month,
+show-class-info-kid .next-month {
+  color: #999999;
+  font-size: 90%;
+}
+
+show-class-info-kid .currentDate,
+show-class-info-kid .otherDate {
+  padding: 5px;
+}
+
+show-class-info-kid .currentDate {
+  font-weight: bold;
+  background-color: #0066ff;
+  color: white;
+}
+
+show-class-info-kid .calendar-header {
+  background-color: #1a4473;
+  color: #FFFFFF;
+}
+
+show-class-info-kid .event-bullet {
+  margin: 2px auto;
+  height: 5px;
+  width: 5px;
+  background-color: green;
+  border-radius: 30px;
+}
+
+show-class-info-kid .selected-date {
+  width: 20px;
+  height: 2px;
+  background-color: blue;
+}
+
+show-class-info-kid .unselected-date {
+  border: none;
+}
+
+show-class-info-kid .calendar-body .grid {
+  padding: 0;
+}
+
+show-class-info-kid .calendar-body .col:last-child {
+  border-right: none;
+}
+
+show-class-info-kid .calendar-body .calendar-weekday,
+show-class-info-kid .calendar-body .calendar-date {
+  text-align: center;
+  margin: 0;
+}
+
+show-class-info-kid .calendar-body .calendar-weekday {
+  font-weight: bold;
+  border-bottom: solid 1px #4d84eb;
+  background-color: #4d84eb;
+}
+
+show-class-info-kid .calendar-body .calendar-date {
+  border-top: solid 1px #2e6585;
+  border-bottom: solid 1px #2e6585;
+}
+
+page-home #home-header {
+  background: #488aff;
+}
+
+page-home #list-row {
+  background: #689efc;
+}
+
+page-home #border {
+  border: 1px solid #ff0000;
+}
+
+page-home #col-avatar {
+  background: #689efc;
+}
+
+page-home ion-avatar img {
+  width: auto !important;
+  height: auto !important;
+}
