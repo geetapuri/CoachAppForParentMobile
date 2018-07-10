@@ -25,6 +25,8 @@ export class AttendanceComponent implements OnInit{
   public selectedKid;
   public attendanceList;
   public parent;
+  public avatar_src;
+  public parentAvatar;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
     console.log('Hello AttendanceComponent Component');

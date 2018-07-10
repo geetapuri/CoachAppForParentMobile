@@ -25679,28 +25679,49 @@ ion-navbar.toolbar {
 }
 
 attendance #list-row {
-  background: #689efc;
+  background: #48c5ff;
+  height: 60px;
 }
 
-attendance #border {
-  border: 1px solid #ff0000;
+attendance #list-col {
+  background: #48c5ff;
 }
 
 attendance #col-avatar {
-  background: #689efc;
+  width: 30px;
+  height: 30px;
+  background: #48c5ff;
 }
 
 attendance ion-avatar img {
-  width: auto !important;
-  height: auto !important;
+  width: 50px !important;
+  height: 50px !important;
 }
 
 attendance #card-name {
-  background: #84b0f1;
+  background: #5f85c7;
+}
+
+attendance #attendance-header {
+  background-color: #4f9cf3;
+  color: white;
+}
+
+attendance #attendance {
+  background-color: #61cef0;
+}
+
+attendance #card-detail {
+  color: darkmagenta;
 }
 
 fees #list-row {
-  background: #689efc;
+  background: #48c5ff;
+  height: 60px;
+}
+
+fees #list-col {
+  background: #48c5ff;
 }
 
 fees #border {
@@ -25708,16 +25729,41 @@ fees #border {
 }
 
 fees #col-avatar {
-  background: #689efc;
-}
-
-fees ion-avatar img {
-  width: auto !important;
-  height: auto !important;
+  width: 30px;
+  height: 30px;
+  background: #48c5ff;
 }
 
 fees #card-name {
   background: #5f85c7;
+}
+
+fees #fee-header {
+  background-color: #4f9cf3;
+  color: white;
+}
+
+fees #attendance {
+  background-color: #61cef0;
+}
+
+fees #fee {
+  background-color: #4feef3;
+}
+
+fees #card-detail {
+  color: darkmagenta;
+}
+
+progress2 #coming-soon {
+  background-color: #cefcfc;
+  color: white;
+  font-style: italic;
+  font: italic bold 12px/30px Georgia, serif;
+}
+
+progress2 #coming-soon-header {
+  color: darkmagenta;
 }
 
 show-class-info-kid [col-1] {
@@ -25774,6 +25820,10 @@ show-class-info-kid .unselected-date {
   border: none;
 }
 
+show-class-info-kid .calendar-body {
+  background-color: #b2f9fc;
+}
+
 show-class-info-kid .calendar-body .grid {
   padding: 0;
 }
@@ -25799,12 +25849,41 @@ show-class-info-kid .calendar-body .calendar-date {
   border-bottom: solid 1px #2e6585;
 }
 
+show-class-info-kid #schedule-header {
+  background-color: #4f9cf3;
+  color: white;
+}
+
+show-class-info-kid #group-name {
+  background-color: #61cef0;
+}
+
+show-class-info-kid #schedule-details {
+  background-color: #4feef3;
+}
+
+show-class-info-kid #card-background {
+  background-color: #abf7fa;
+  color: darkmagenta;
+}
+
+show-class-info-kid .selectedDate {
+  background-color: #00ffdd;
+  padding: 5px;
+  color: darkgreen;
+}
+
 page-home #home-header {
   background: #488aff;
 }
 
 page-home #list-row {
-  background: #689efc;
+  background: #48c5ff;
+  height: 60px;
+}
+
+page-home #list-col {
+  background: #48c5ff;
 }
 
 page-home #border {
@@ -25812,10 +25891,27 @@ page-home #border {
 }
 
 page-home #col-avatar {
-  background: #689efc;
+  width: 30px;
+  height: 30px;
+  background: #48c5ff;
 }
 
-page-home ion-avatar img {
-  width: auto !important;
-  height: auto !important;
+page-home #kids-pic {
+  background-repeat: repeat;
+  height: 105px;
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration: 2s;
+  transition-duration: 2s;
+  background-size: cover;
+  background-position: center;
+}
+
+page-home #kids-pic:hover {
+  width: 300px;
+}
+
+page-home #text-div {
+  margin: auto;
+  vertical-align: middle;
 }

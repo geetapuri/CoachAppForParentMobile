@@ -2,95 +2,81 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/parent.png"> FEES
+            <img alt="logo" height="40" src="assets/imgs/axar.png"> FEES
         </ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
 
 
-    <ion-grid>
-        <ion-row>
-            <button ion-button block>
-                        <ion-col col-3>
-                            KID ID
-                        </ion-col>
-                        <ion-col col-4>
-                            KID NAME
-                        </ion-col>
-                        <ion-col col-5>
-                            GROUP NAME ID
-                        </ion-col>
+    <div padding>
+        <ion-row *ngIf="kidsList; else loading">
+
+
+            <button ion-button block id="list-row" style="background:#48c5ff;" *ngFor="let item of kidsList" (click)="getFeesForKid(item)">
+        
+                            <ion-col col-3 ion-item  no-lines id="col-avatar">
+                              
+                                <ion-avatar item-left>
+                                    <img src="{{item.avatarSrc}}" alt="child pic">
+                                </ion-avatar>
+        
+                            </ion-col>
+        
+                            <ion-col id ="list-col">
+        
+                                {{ item.kidName }}<br>
+        
+        
+                                {{ item.groupName }} {{item.groupID}}
+                                
+                            </ion-col>
                     </button>
+
+
+
+
         </ion-row>
         <div>
-            <ion-row *ngIf="kidsList; else loading">
-                <button *ngFor="let item of kidsList" (click)="getFeesForKid(item)">
-                    <button ion-button block id="list-row">
-                        
-                        <ion-col col-3  ion-item  id="col-avatar">
-                                {{ item.kidID }}
-                                <ion-avatar item-left no-padding >
-                                        <img src="assets/imgs/geeta.jpg">   
-                                    </ion-avatar>
-                            
-                            
-                        
-                        </ion-col>
-                    
-                        <ion-col col-4>
-    
-                            {{ item.kidName }}<br>
-    
-                        </ion-col>
-                        <ion-col col-5>
-    
-                            {{ item.groupName }} {{item.groupID}}
-    
-                        </ion-col>
-                        
-                    </button>
-                </button>
-
-            </ion-row>
             <ng-template #loading>
                 <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
             </ng-template>
         </div>
 
-    </ion-grid>
+    </div>
 
 
 
 
-
-    <button padding ion-button block id="card-name" *ngIf=selectedKid>
+    <div padding>
+        <button ion-button block id="card-name" *ngIf=selectedKid>
                 {{selectedKid}}
 
-    </button>
+        </button>
+    </div>
 
 
+    <div>
+        <ion-card id="card-detail" *ngFor="let item of feeList">
+            <ion-card-header id="fee-header">
+                {{ item.dateOfAttendance | date }}
+            </ion-card-header>
+            <ion-card-content padding id="attendance">
 
-    <ion-card *ngFor="let item of feeList">
-        <ion-card-header>
-            {{ item.dateOfAttendance | date }}
-        </ion-card-header>
-        <ion-card-content>
+                Attendance :
+                <div style="font-weight: bold;"> {{ item.present }}</div>
 
-            Attendance :
-            <div style="font-weight: bold;"> {{ item.present }}</div>
+            </ion-card-content>
+            <ion-card-content id="fee">
+                Fee Paid :
+                <div style="font-weight: bold;"> {{ item.feePaid }}</div>
 
-        </ion-card-content>
-        <ion-card-content>
-            Fee Paid :
-            <div style="font-weight: bold;"> {{ item.feePaid }}</div>
+            </ion-card-content>
 
-        </ion-card-content>
-
-    </ion-card>
-    <ng-template #loading2>
-        <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
-    </ng-template>
-
+        </ion-card>
+        <ng-template #loading2>
+            <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
+        </ng-template>
+    </div>
 
 </ion-content>

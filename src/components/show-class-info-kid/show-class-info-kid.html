@@ -2,7 +2,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/axar.png"> CLASS DETAILS
+            <img alt="logo" height="40" src="assets/imgs/axar.png"> DETAILS
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -48,33 +48,32 @@
     </ion-card>
 
 
-    <ion-card text-wrap>
-        <ion-card-header>
+    <ion-card id="card-background">
+        <ion-card-header id="schedule-header">
             Schedule for
-            <div *ngIf="selectedDate; else originalDate">{{selectedDate | date}}</div>
-            <ng-template #originalDate>{{myDate | date}} </ng-template>
-            <br> {{kid.kidName}}
+            <div *ngIf="selectedDate; else originalDate">{{selectedDate | date}}, </div>
+            <ng-template #originalDate>{{myDate | date}}, </ng-template>
+            {{kid.kidName}}
         </ion-card-header>
-        <ion-card-content>
-            KID ID {{kid.kidID}}
-        </ion-card-content>
-        <ion-card-content>
+
+        <ion-card-content padding id="group-name">
+
             GROUP {{kid.groupName}} ({{kid.groupID}})
         </ion-card-content>
 
-        <ion-card-content>
+        <ion-card-content id="schedule-details">
+            <div *ngIf="scheduleForDate?.length>0 ; else noClassToday">
+                <ion-list *ngFor="let item of scheduleForDate">
 
-            <ion-list *ngFor="let item of scheduleForDate">
-                At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date | date}}
-            </ion-list>
+                    At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date | date}}
+
+                </ion-list>
+            </div>
+            <ng-template #noClassToday>No Class Today</ng-template>
         </ion-card-content>
 
 
-        <ion-card-content>
-            <button padding ion-button (click)="backToHome()" icon-only>
-            <ion-icon name="home" ></ion-icon>
-        </button>
-        </ion-card-content>
+
 
     </ion-card>
 </ion-content>

@@ -85,6 +85,8 @@ months[11] = "December";*/
       data => {
 
         this.scheduleForDate=data.returnSchedule;
+        console.log("schedule for date list has come as: " + 
+          data.returnSchedule);
         //console.log("data received = " + this.scheduleForDate[0].time);
         //this.navCtrl.push(KidsComponent, {parent:this.parent});
 
@@ -190,9 +192,9 @@ months[11] = "December";*/
           var withSpan = document.getElementById("col-"+index).innerHTML;
           //console.log("1 withspan index " + withSpan);
           if(withSpan.startsWith('<span')) {
-            console.log("withspan index " + withSpan.indexOf("currentDate\">"));
+            console.log("withspan index " + withSpan.indexOf("selectedDate\">"));
 
-            withSpan = withSpan.substring(withSpan.indexOf("currentDate\">")+13,withSpan.indexOf("</span>"));
+            withSpan = withSpan.substring(withSpan.indexOf("selectedDate\">")+14,withSpan.indexOf("</span>"));
             //withSpan = withSpan.substring(withSpan.indexOf("</span>"), withSpan.length);
             console.log("withspan cleared " + withSpan);
             document.getElementById("col-"+index).innerHTML = withSpan;
@@ -212,7 +214,7 @@ months[11] = "December";*/
     console.log("get element by id for col id = " + document.getElementById("col-"+day).innerHTML );
     var toSpan = document.getElementById("col-"+day).innerHTML;
     this.clearHighlightedDate();
-     toSpan = "<span class='currentDate'>"+toSpan + "</span>";
+     toSpan = "<span class='selectedDate'>"+toSpan + "</span>";
      document.getElementById("col-"+day).innerHTML = toSpan;
     this.monthNum = this.date.getMonth() + 1;
     this.selectedDate = this.currentYear + "-" + this.monthNum + "-" + day;
@@ -224,6 +226,9 @@ months[11] = "December";*/
       data => {
 
         this.scheduleForDate=data.returnSchedule;
+        console.log("schedule for date list has come as: " + 
+          data.returnSchedule);
+
         //console.log("data received = " + this.scheduleForDate[0].time);
         //this.navCtrl.push(KidsComponent, {parent:this.parent});
 

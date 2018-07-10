@@ -1,97 +1,69 @@
 <ion-header id="home-header">
     <ion-navbar>
+
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/axar.png"> Parents
+            <img alt="logo" height="40" src="assets/imgs/axar.png"> Parents App
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 
 
-<ion-content padding>
-    <ion-grid>
+<ion-content>
+
+    <div padding>
         <ion-row>
-            <ion-col col-6>
-                <div>
-                    Welcome to the Parent App
-                </div>
-            </ion-col>
-            <ion-col ion-item block>
-
-
+            <ion-col col-2 ion-item no-lines>
 
                 <ion-avatar item-left>
-                    <img src="assets/imgs/geeta.jpg">
+                    <img src="{{parentAvatar}}" alt="parent picture">
                 </ion-avatar>
 
-
-
-
-
+            </ion-col>
+            <ion-col col-4 id="text-div">
+                <button ion-button round outline>Classes</button>
+            </ion-col>
+            <ion-col id="kids-pic">
+                <img src="assets/imgs/activities.png">
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </div>
+
+    <div padding>
+        <ion-row *ngIf="kidList; else loading">
 
 
+            <button ion-button block id="list-row" style="background:#48c5ff;" *ngFor="let item of kidList" (click)="goToShowKidClasses(item)">
 
-    <ion-grid>
-        <ion-row>
-            <button ion-button block>
-                    <ion-col col-3>
-                        KID ID
+                    <ion-col col-2 ion-item  no-lines id="col-avatar">
+                      
+                        <ion-avatar item-left>
+                            <img src="{{item.avatarSrc}}" alt="child pic">
+                        </ion-avatar>
+
                     </ion-col>
-                    <ion-col col-4>
-                        KID NAME
-                    </ion-col>
-                    <ion-col col-5>
-                        GROUP NAME ID
-                    </ion-col>
-                </button>
-        </ion-row>
-        <div>
-            <ion-row *ngIf="kidList; else loading">
-                <button *ngFor="let item of kidList" (click)="goToShowKidClasses(item)">
-                <button ion-button block id="list-row">
-                    
-                    <ion-col col-3  ion-item  id="col-avatar">
-                            {{ item.kidID }}
-                            <div ion-avatar item-left no-padding >
-                                    <img src="assets/imgs/geeta.jpg">   
-                            </div>
-                        
-                        
-                    
-                    </ion-col>
-                
-                    <ion-col col-4>
+
+                    <ion-col id ="list-col">
 
                         {{ item.kidName }}<br>
 
-                    </ion-col>
-                    <ion-col col-5>
 
                         {{ item.groupName }} {{item.groupID}}
-
+                        
                     </ion-col>
-                    
-                </button>
-                </button>
+            </button>
 
-            </ion-row>
+
+
+
+        </ion-row>
+        <div>
             <ng-template #loading>
                 <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
             </ng-template>
         </div>
 
-    </ion-grid>
-
-
-
-
-
-
-
-
+    </div>
 
     <div padding>
         <button ion-button block (click)="goToFees()">Fees</button>
@@ -104,21 +76,6 @@
     <div padding>
         <button ion-button block (click)="goToProgress()">Progress</button>
     </div>
-
-    <div padding>
-        <button ion-button block (click)="goToPerformance()">Performance</button>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 </ion-content>

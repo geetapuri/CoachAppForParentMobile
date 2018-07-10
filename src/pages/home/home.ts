@@ -27,14 +27,15 @@ export class HomePage implements OnInit{
         console.log("in subscribe to data of getParentID");
 
         this.parent= data.parent;
-        console.log("parent id received as : " + data.parent[0].parentID);
+        this.parentAvatar= data.parent[0].parentAvatar;
+        console.log("parent avatar received as: " + data.parent[0].parentAvatar);
         console.log("parent = " + this.parent[0].parentID);
         console.log("now get kids list");
         this.getKidsList();
       },
       err => console.error(err),
       () =>
-        console.log('getParentID completed'),
+        console.log('getParentID   completed'),
     );
 
 
@@ -44,6 +45,8 @@ export class HomePage implements OnInit{
   public user;
   public parent;
   public kidList;
+  public avatar_src="assets/imgs/geeta.jpg";
+  public parentAvatar;
 
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
@@ -94,6 +97,7 @@ export class HomePage implements OnInit{
 
 
         this.kidList= data.kidList;
+        
 
       },
       err => console.error(err),
