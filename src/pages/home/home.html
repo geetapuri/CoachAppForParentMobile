@@ -33,7 +33,7 @@
         <ion-row *ngIf="kidList; else loading">
 
 
-            <button ion-button block id="list-row" style="background:#48c5ff;" *ngFor="let item of kidList" (click)="goToShowKidClasses(item)">
+            <button ion-button block id="list-row"  *ngFor="let item of kidList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="goToShowKidClasses(item)">
 
                     <ion-col col-2 ion-item  no-lines id="col-avatar">
                       

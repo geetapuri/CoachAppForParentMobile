@@ -25814,6 +25814,7 @@ show-class-info-kid .selected-date {
   width: 20px;
   height: 2px;
   background-color: blue;
+  font-weight: bold;
 }
 
 show-class-info-kid .unselected-date {
@@ -25878,12 +25879,11 @@ page-home #home-header {
 }
 
 page-home #list-row {
-  background: #48c5ff;
   height: 60px;
 }
 
 page-home #list-col {
-  background: #48c5ff;
+  background-color: transparent;
 }
 
 page-home #border {
@@ -25893,7 +25893,7 @@ page-home #border {
 page-home #col-avatar {
   width: 30px;
   height: 30px;
-  background: #48c5ff;
+  background-color: transparent;
 }
 
 page-home #kids-pic {
@@ -25914,4 +25914,12 @@ page-home #kids-pic:hover {
 page-home #text-div {
   margin: auto;
   vertical-align: middle;
+}
+
+page-home .even {
+  background-color: #28b3d6;
+}
+
+page-home .odd {
+  background-color: #79f1f5;
 }

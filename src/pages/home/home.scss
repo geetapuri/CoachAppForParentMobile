@@ -3,11 +3,11 @@ page-home {
         background: color($colors, primary);
     }
     #list-row {
-        background: #48c5ff;
+        
         height: 60px;
     }
     #list-col {
-        background: #48c5ff;
+        background-color:transparent;
     }
     #border {
         border: 1px solid #ff0000;
@@ -15,7 +15,7 @@ page-home {
     #col-avatar {
         width: 30px;
         height: 30px;
-        background: #48c5ff;
+        background-color: transparent;
     }
     #kids-pic {
         background-repeat: repeat;
@@ -31,5 +31,11 @@ page-home {
     #text-div {
         margin: auto;
         vertical-align: middle;
+    }
+    .even {
+        background-color: rgb(40, 179, 214);
+    }
+    .odd {
+        background-color: rgb(121, 241, 245);
     }
 }
