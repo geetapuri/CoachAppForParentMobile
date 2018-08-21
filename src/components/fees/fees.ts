@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { PayFeesComponent} from '../pay-fees/pay-fees';
+import { HomePage } from '../../pages/home/home';
+
 
 /**
  * Generated class for the FeesComponent component.
@@ -34,24 +36,26 @@ export class FeesComponent implements OnInit{
     console.log('Hello FeesComponent Component');
     this.text = 'Hello World';
     this.parent = this.navParams.get('parent');
+    this.user= this.navParams.get('role');
   }
 
   
 
   getKids(){
     console.log("in getKids");
-    this.springData.getKidInfoParent(this.parent).subscribe(
+    this.springData.getKidsFeeParent(this.parent).subscribe(
       data => {
 
-        this.kidsList= data.kidList;
+        this.kidsList= data.kidsList;
         //this.selectedKid= data.kidList[0];
 
       },
       err => console.error(err),
-      () => console.log('getKidInfoParent completed')
+      () => console.log('getKidsFeeParent completed')
     );
 
   }
+  
   public onItemSelection(selection){
     let item=this.selectedKid;
     if (selection!=undefined){
@@ -61,26 +65,18 @@ export class FeesComponent implements OnInit{
   }
 
 getFeesForKid(item){
-  this.selectedKid= item.kidName;
-  this.springData.viewFeesForKid(item).subscribe(
-    data => {
-
-
-      this.feeList= data.feeList;
-
-    },
-    err => console.error(err),
-    () => console.log('viewFeesKid completed')
-  );
+  this.navCtrl.push(PayFeesComponent, {item:item, parent:this.parent, role:this.user});
 
 }
 
-payFees(selectedFeeItem){
-console.log("payFees for selectedFeeItem = " + selectedFeeItem.dateOfAttendance);
-console.log("child id is with me or no? " + this.selectedKid.kidName);
-this.navCtrl.push(PayFeesComponent, {selectedFeeItem:selectedFeeItem, selectedKid:this.selectedKid});
 
+
+
+goBackHome(){
+  console.log("going back to home page");
+  this.navCtrl.push(HomePage, {parent:this.parent, role:this.user});
 }
+
 
 
 }

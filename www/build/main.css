@@ -25678,81 +25678,102 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
-attendance #list-row {
-  background: #48c5ff;
-  height: 60px;
-}
-
-attendance #list-col {
-  background: #48c5ff;
-}
-
-attendance #col-avatar {
-  width: 30px;
-  height: 30px;
-  background: #48c5ff;
-}
-
-attendance ion-avatar img {
-  width: 50px !important;
-  height: 50px !important;
-}
-
-attendance #card-name {
-  background: #5f85c7;
-}
-
-attendance #attendance-header {
-  background-color: #4f9cf3;
+attendance .even {
+  background-color: #28b3d6;
   color: white;
 }
 
-attendance #attendance {
-  background-color: #61cef0;
+attendance .odd {
+  background-color: #79f1f5;
+  color: #28b3d6;
 }
 
-attendance #card-detail {
-  color: darkmagenta;
+attendance img {
+  cursor: pointer;
 }
 
-fees #list-row {
-  background: #48c5ff;
-  height: 60px;
+attendance .scroll-list {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
 }
 
-fees #list-col {
-  background: #48c5ff;
+attendance .scroll-list button {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  font-weight: bold;
+  height: 80px;
 }
 
-fees #border {
-  border: 1px solid #ff0000;
+attendance .scroll-list button:hover {
+  background-color: #777;
 }
 
-fees #col-avatar {
-  width: 30px;
-  height: 30px;
-  background: #48c5ff;
+attendance .class-date {
+  font-size: large !important;
 }
 
-fees #card-name {
-  background: #5f85c7;
+fees .even {
+  background-color: #28b3d6;
 }
 
-fees #fee-header {
-  background-color: #4f9cf3;
-  color: white;
+fees .odd {
+  background-color: #79f1f5;
 }
 
-fees #attendance {
-  background-color: #61cef0;
+fees #group-name,
+fees #payment-button {
+  background-color: #c4fbfd;
+  color: black;
 }
 
-fees #fee {
-  background-color: #4feef3;
+fees img {
+  cursor: pointer;
 }
 
-fees #card-detail {
-  color: darkmagenta;
+fees #fee-amount {
+  color: red;
+  font-weight: bold;
+}
+
+groups .even {
+  background-color: #28b3d6;
+}
+
+groups .odd {
+  background-color: #79f1f5;
+}
+
+groups img {
+  cursor: pointer;
+}
+
+pay-fees .even {
+  background-color: #28b3d6;
+}
+
+pay-fees .odd {
+  background-color: #79f1f5;
+}
+
+pay-fees #button-text {
+  text-align: left;
+}
+
+pay-fees .button-inner {
+  justify-items: left;
+}
+
+pay-fees #name-col,
+pay-fees #cb-col,
+pay-fees #cb-fee {
+  text-align: left;
+}
+
+pay-fees img {
+  cursor: pointer;
 }
 
 progress2 #coming-soon {
@@ -25878,22 +25899,12 @@ page-home #home-header {
   background: #488aff;
 }
 
-page-home #list-row {
-  height: 60px;
-}
-
 page-home #list-col {
-  background-color: transparent;
+  background: #48c5ff;
 }
 
 page-home #border {
   border: 1px solid #ff0000;
-}
-
-page-home #col-avatar {
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
 }
 
 page-home #kids-pic {
@@ -25911,15 +25922,40 @@ page-home #kids-pic:hover {
   width: 300px;
 }
 
-page-home #text-div {
-  margin: auto;
-  vertical-align: middle;
-}
-
 page-home .even {
   background-color: #28b3d6;
 }
 
 page-home .odd {
   background-color: #79f1f5;
+}
+
+page-home #activities-image {
+  text-align: right;
+}
+
+page-home #show-groups {
+  text-align: center;
+}
+
+page-home #card-background,
+page-home #top-row {
+  text-align: center;
+}
+
+page-home #menu,
+page-home #class-for-today {
+  background-color: #78d9f7;
+}
+
+page-home .button-inner {
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+page-home ion-img {
+  border-radius: 70%;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
 }

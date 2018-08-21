@@ -3,6 +3,7 @@ import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/g
 import {  NavController, NavParams } from 'ionic-angular';
 import { KidsComponent } from '../kids/kids';
 import { HomePage } from '../../pages/home/home';
+
 /**
  * Generated class for the EditKidComponent component.
  *
@@ -239,8 +240,8 @@ months[11] = "December";*/
     );
   }
 
-  backToHome(){
-    console.log("go back to home page");
+  goBackHome(){
+    console.log("going back to home page");
     this.navCtrl.push(HomePage, {parent:this.parent, role:this.user});
   }
 

@@ -31,7 +31,7 @@ export class HomePage implements OnInit{
         console.log("parent avatar received as: " + data.parent[0].parentAvatar);
         console.log("parent = " + this.parent[0].parentID);
         console.log("now get kids list");
-        this.getKidsList();
+        this.getKidsListForToday();
       },
       err => console.error(err),
       () =>
@@ -47,6 +47,7 @@ export class HomePage implements OnInit{
   public kidList;
   public avatar_src="assets/imgs/geeta.jpg";
   public parentAvatar;
+  public myDate = new Date();
 
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
@@ -60,13 +61,13 @@ export class HomePage implements OnInit{
   }
   goToAttendance(){
 
-    this.navCtrl.push(AttendanceComponent, {parent:this.parent});
+    this.navCtrl.push(AttendanceComponent, {parent:this.parent, role:this.user});
 
   }
   goToFees(){
     console.log("calling FeeComponent");
 
-    this.navCtrl.push(FeesComponent, {parent:this.parent});
+    this.navCtrl.push(FeesComponent, {parent:this.parent, role:this.user});
   }
   getKids(){
     console.log("in kids");
@@ -106,10 +107,30 @@ export class HomePage implements OnInit{
 
 
   }
+  
+  getKidsListForToday(){
+    console.log("getKidsListForToday");
+    //get all the kids list from DB first
+    this.springData.getKidInfoParentToday(this.parent, this.myDate).subscribe(
+      data => {
 
-  goToShowKidClasses(selectedKid) {
-    console.log("Show kid Classes, calling ShowClassInfoComponent now");
-    this.navCtrl.push(ShowClassInfoKidComponent, {selectedKid:selectedKid, parent:this.parent, user:this.user});
+
+        this.kidList= data.Schedule;
+        
+
+      },
+      err => console.error(err),
+      () => console.log('getKidsListForToday   completed')
+    );
+
+
+  }
+
+  
+  
+  goToGroups(){
+    console.log(" groups");
+    this.navCtrl.push(GroupsComponent, {parent:this.parent, role:this.user});
   }
   
 

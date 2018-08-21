@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { EditGroupsComponent} from '../../components/edit-groups/edit-groups';
 import { AddGroupsComponent} from '../../components/add-groups/add-groups';
+import { ShowClassInfoKidComponent} from '../../components/show-class-info-kid/show-class-info-kid';
+import { HomePage } from '../../pages/home/home';
+
 
 /**
  * Generated class for the GroupsComponent component.
@@ -14,7 +17,11 @@ import { AddGroupsComponent} from '../../components/add-groups/add-groups';
   selector: 'groups',
   templateUrl: 'groups.html'
 })
-export class GroupsComponent {
+export class GroupsComponent implements OnInit{
+
+    ngOnInit(){
+        this.getKidList();
+      }
 
   text: string;
   public groupList;
@@ -23,6 +30,9 @@ export class GroupsComponent {
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello GroupsComponent Component');
     this.text = 'Hello World';
+    this.parent= this.navParams.get('parent');
+    this.user = this.navParams.get('role');
+
 
   }
 
@@ -51,6 +61,31 @@ export class GroupsComponent {
     console.log("add Group");
     this.navCtrl.push(AddGroupsComponent);
 
+  }
+  
+  goBackHome(){
+    console.log("going back to home page");
+    this.navCtrl.push(HomePage, {parent:this.parent, role:this.user});
+  }
+  
+  getKidList(){
+    console.log("getKidList");
+   
+    this.springData.getKidInfoParent(this.parent).subscribe(
+      data => {
+
+
+        this.kidList= data.kidList;
+
+      },
+      err => console.error(err),
+      () => console.log('getGroupList completed')
+    );
+  }
+  
+  goToShowKidClasses(selectedKid) {
+    console.log("Show kid Classes, calling ShowClassInfoComponent now");
+    this.navCtrl.push(ShowClassInfoKidComponent, {selectedKid:selectedKid, parent:this.parent, role:this.user});
   }
 
 

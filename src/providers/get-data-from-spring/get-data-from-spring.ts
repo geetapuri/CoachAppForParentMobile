@@ -232,6 +232,24 @@ export class GetDataFromSpringProvider {
      return this.http.post(`/viewAttendanceKid`, body, {headers: headers})
       .map(data => data.json());
   }
+  
+  viewAttendanceForKidGroup(item){
+    console.log(" in view attendance for kid, kidID = " + item.kidID);
+
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = {
+        'kidID': item.kidID,
+        'groupID': item.groupID
+      }
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+
+      //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+     return this.http.post(`/viewAttendanceKidGroup`, body, {headers: headers})
+      .map(data => data.json());
+  }
+
 
   checkAttendance(item){
     console.log(" in check attendance for kid, groupID = " + item.groupID);
@@ -331,6 +349,41 @@ export class GetDataFromSpringProvider {
     .map(data => data.json());
   }
 
+getKidsFeeParent(parent){
+    console.log("In get Kids InfoParent");
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = {
+      'parentID': parent[0].parentID
+    }
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+    console.log("sending parent id as " + parent[0].parentID);
+
+    //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+  return this.http.post(`/getKidsFeeParent`, body, {headers: headers})
+    .map(data => data.json());
+  }
+
+
+  getKidInfoParentToday(parent, date){
+    console.log("In get Kids InfoParent");
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = {
+      'parentID': parent[0].parentID,
+      'date': date
+    }
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+    console.log("sending parent id as " + parent[0].parentID);
+
+    //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+  return this.http.post(`/getKidInfoParentToday`, body, {headers: headers})
+    .map(data => data.json());
+  }
+  
+  
   updateKid(kid){
     console.log("In update Kid Info");
     let headers = new Headers ({ 'Content-Type': 'application/json' });

@@ -1,31 +1,35 @@
 attendance {
-    #list-row {
-        background: #48c5ff;
-        height: 60px;
-    }
-    #list-col {
-        background: #48c5ff;
-    }
-    #col-avatar {
-        width: 30px;
-        height: 30px;
-        background: #48c5ff;
-    }
-    ion-avatar img {
-        width: 50px !important;
-        height: 50px !important;
-    }
-    #card-name {
-        background: #5f85c7;
-    }
-    #attendance-header {
-        background-color: rgb(79, 156, 243);
+    .even {
+        background-color: rgb(40, 179, 214);
         color: white;
+        
     }
-    #attendance {
-        background-color: rgb(97, 206, 240);
+    .odd {
+        background-color: rgb(121, 241, 245);
+        color: rgb(40, 179, 214);
+        
     }
-    #card-detail {
-        color: darkmagenta;
+    img {
+        cursor: pointer;
+    }
+    
+    .scroll-list {
+        background-color: #333;
+        overflow: auto;
+        white-space: nowrap;
+    }
+    .scroll-list button {
+        display: inline-block;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        font-weight: bold;
+        height: 80px;
+    }
+    .scroll-list button:hover {
+        background-color: #777;
+    }
+    .class-date{
+        font-size:large !important;
     }
 }
