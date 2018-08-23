@@ -8,8 +8,8 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mark_attendance_mark_attendance__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mark_attendance_mark_attendance__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -111,92 +111,13 @@ var AttendanceComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 106:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeesComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pay_fees_pay_fees__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(51);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the FeesComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
-var FeesComponent = /** @class */ (function () {
-    function FeesComponent(springData, navCtrl, navParams) {
-        this.springData = springData;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        console.log('Hello FeesComponent Component');
-        this.text = 'Hello World';
-        this.parent = this.navParams.get('parent');
-        this.user = this.navParams.get('role');
-    }
-    FeesComponent.prototype.ngOnInit = function () {
-        console.log("calling getKids");
-        this.getKids();
-    };
-    FeesComponent.prototype.getKids = function () {
-        var _this = this;
-        console.log("in getKids");
-        this.springData.getKidsFeeParent(this.parent).subscribe(function (data) {
-            _this.kidsList = data.kidsList;
-            //this.selectedKid= data.kidList[0];
-        }, function (err) { return console.error(err); }, function () { return console.log('getKidsFeeParent completed'); });
-    };
-    FeesComponent.prototype.onItemSelection = function (selection) {
-        var item = this.selectedKid;
-        if (selection != undefined) {
-            console.log("item selected: " + item.kidName);
-        }
-    };
-    FeesComponent.prototype.getFeesForKid = function (item) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pay_fees_pay_fees__["a" /* PayFeesComponent */], { item: item, parent: this.parent, role: this.user });
-    };
-    FeesComponent.prototype.goBackHome = function () {
-        console.log("going back to home page");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */], { parent: this.parent, role: this.user });
-    };
-    FeesComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'fees',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/'<!-- Generated template for the FeesComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> Fees\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n\n\n\n\n    <div padding>\n        <div *ngIf="kidsList">\n\n            <div>\n                <ion-row id="group-name">\n                    <ion-col no-padding>\n                        <div padding >\n                            Kids - Groups\n                        </div>\n                    </ion-col>\n                    <ion-col>\n                        <div padding float-right> Fee Due </div>\n                    </ion-col>\n                </ion-row>\n\n\n                    \n\n\n            </div>\n\n\n            <button ion-button block id="list-row" *ngFor="let item of kidsList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getFeesForKid(item)">\n              <ion-col col-8><div float-left >{{ item.kidName }} {{item.groupName}}</div></ion-col>\n              <ion-col><div float-right id="fee-amount">{{ item.invoiceAmount}}</div></ion-col>\n              <ion-col><div float-right id ="invoice-due">{{ item.invoiceDue}}</div></ion-col>\n\n            </button>\n\n        </div>\n    </div>\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
-    ], FeesComponent);
-    return FeesComponent;
-    var _a, _b, _c;
-}());
-
-//# sourceMappingURL=fees.js.map
-
-/***/ }),
-
 /***/ 11:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GetDataFromSpringProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -325,7 +246,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         var body = {
             'kidID': kidID,
-            'date': myDate
+            'strDate': myDate
         };
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
@@ -563,16 +484,17 @@ var GetDataFromSpringProvider = /** @class */ (function () {
     };
     GetDataFromSpringProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
     ], GetDataFromSpringProvider);
     return GetDataFromSpringProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=get-data-from-spring.js.map
 
 /***/ }),
 
-/***/ 118:
+/***/ 117:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -585,11 +507,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 118;
+webpackEmptyAsyncContext.id = 117;
 
 /***/ }),
 
-/***/ 159:
+/***/ 158:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -602,20 +524,20 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 159;
+webpackEmptyAsyncContext.id = 158;
 
 /***/ }),
 
-/***/ 205:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_home__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_home__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(203);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -670,7 +592,7 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 206:
+/***/ 205:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -749,7 +671,7 @@ var AddScheduleComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 207:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -816,7 +738,7 @@ var EditScheduleDetailsComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 208:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -824,7 +746,7 @@ var EditScheduleDetailsComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mark_attendance_for_group_mark_attendance_for_group__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mark_attendance_for_group_mark_attendance_for_group__ = __webpack_require__(208);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -886,7 +808,7 @@ var MarkAttendanceComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 209:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -995,6 +917,84 @@ var MarkAttendanceForGroupComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 209:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeesComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pay_fees_pay_fees__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(31);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the FeesComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var FeesComponent = /** @class */ (function () {
+    function FeesComponent(springData, navCtrl, navParams) {
+        this.springData = springData;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        console.log('Hello FeesComponent Component');
+        this.text = 'Hello World';
+        this.parent = this.navParams.get('parent');
+        this.user = this.navParams.get('role');
+    }
+    FeesComponent.prototype.ngOnInit = function () {
+        console.log("calling getKids");
+        this.getKids();
+    };
+    FeesComponent.prototype.getKids = function () {
+        var _this = this;
+        console.log("in getKids");
+        this.springData.getKidsFeeParent(this.parent).subscribe(function (data) {
+            _this.kidsList = data.kidsList;
+            //this.selectedKid= data.kidList[0];
+        }, function (err) { return console.error(err); }, function () { return console.log('getKidsFeeParent completed'); });
+    };
+    FeesComponent.prototype.onItemSelection = function (selection) {
+        var item = this.selectedKid;
+        if (selection != undefined) {
+            console.log("item selected: " + item.kidName);
+        }
+    };
+    FeesComponent.prototype.getFeesForKid = function (item) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pay_fees_pay_fees__["a" /* PayFeesComponent */], { item: item, parent: this.parent, role: this.user });
+    };
+    FeesComponent.prototype.goBackHome = function () {
+        console.log("going back to home page");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */], { parent: this.parent, role: this.user });
+    };
+    FeesComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'fees',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/'<!-- Generated template for the FeesComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> Fees\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n\n\n\n\n    <div padding>\n        <div *ngIf="kidsList">\n\n            <div>\n                <ion-row id="group-name">\n                    <ion-col no-padding>\n                        <div padding >\n                            Kids - Groups\n                        </div>\n                    </ion-col>\n                    <ion-col>\n                        <div padding float-right> Fee Due </div>\n                    </ion-col>\n                </ion-row>\n\n\n                    \n\n\n            </div>\n\n\n            <button ion-button block id="list-row" *ngFor="let item of kidsList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getFeesForKid(item)">\n              <ion-col col-8><div float-left >{{ item.kidName }} {{item.groupName}}</div></ion-col>\n              <ion-col><div float-right id="fee-amount">{{ item.invoiceAmount}}</div></ion-col>\n              <ion-col><div float-right id ="invoice-due">{{ item.invoiceDue}}</div></ion-col>\n\n            </button>\n\n        </div>\n    </div>\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
+    ], FeesComponent);
+    return FeesComponent;
+}());
+
+//# sourceMappingURL=fees.js.map
+
+/***/ }),
+
 /***/ 210:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1003,7 +1003,7 @@ var MarkAttendanceForGroupComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1056,10 +1056,9 @@ var PayFeesComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'pay-fees',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/pay-fees/pay-fees.html"*/'<!-- Generated template for the PayFeesComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> PAY FEES\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n{{kidsList}}\n\n\n<ion-content padding>\n\n    <div padding>\n        <div>\n\n            <ion-row *ngIf="feeList; else loading">\n\n                <ion-grid>\n                    <ion-row>\n                        <ion-col col-5>\n                            Date\n                        </ion-col>\n                        <ion-col>\n                            Present\n                        </ion-col>\n                        <ion-col>\n                            Fee Paid\n                        </ion-col>\n                    </ion-row>\n                </ion-grid>\n\n                <button id="button-text" ion-button block id="list-row" *ngFor="let item of feeList; let i=index let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}">\n\n                    <ion-grid>\n                    <ion-row no-padding>\n                      <ion-col  col-5 id="name-col">\n                        {{item.dateOfAttendance | date}}\n                      </ion-col>\n                      <ion-col id="cb-col">\n                        {{item.present}}\n                      </ion-col>\n                      <ion-col id="cb-fee">\n                        {{item.feePaid}}\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n\n\n                </button>\n\n\n            </ion-row>\n        </div>\n\n        <div>\n            <ng-template #loading>\n                <ion-spinner name="bubbles">Loading Groups...</ion-spinner>\n            </ng-template>\n        </div>\n\n\n    </div>\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/pay-fees/pay-fees.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
     ], PayFeesComponent);
     return PayFeesComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=pay-fees.js.map
@@ -1314,7 +1313,7 @@ var AddGroupsComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__kids_kids__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1360,7 +1359,7 @@ var ShowClassInfoKidComponent = /** @class */ (function () {
         this.text = 'Hello World';
         this.kid = this.navParams.get('selectedKid');
         this.parent = this.navParams.get('parent');
-        this.user = this.navParams.get('user');
+        this.user = this.navParams.get('role');
         //this.selectedGroup.groupID= this.kid.groupID;
         var groupName = this.kid.groupName;
         var kidName = this.kid.kidName;
@@ -1504,9 +1503,10 @@ var ShowClassInfoKidComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'show-class-info-kid',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> DETAILS\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-card>\n        <div class="calendar-header">\n            <ion-row class="calendar-month">\n                <ion-col col-2 (click)="goToLastMonth()">\n                    <ion-icon name="arrow-back"></ion-icon>\n                </ion-col>\n                <ion-col col-8>{{currentMonth}} {{currentYear}}</ion-col>\n                <ion-col col-2 (click)="goToNextMonth()">\n                    <ion-icon name="arrow-forward"></ion-icon>\n                </ion-col>\n            </ion-row>\n        </div>\n        <div class="calendar-body">\n            <ion-grid>\n                <ion-row class="calendar-weekday">\n                    <ion-col>Su</ion-col>\n                    <ion-col>Mo</ion-col>\n                    <ion-col>Tu</ion-col>\n                    <ion-col>We</ion-col>\n                    <ion-col>Th</ion-col>\n                    <ion-col>Fr</ion-col>\n                    <ion-col>Sa</ion-col>\n                </ion-row>\n                <ion-row class="calendar-date">\n                    <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>\n                    <ion-col col-1 id="col-{{day}}" *ngFor="let day of daysInThisMonth" (click)="clickedDate(day)">\n                        <span class="currentDate" *ngIf="currentDate === day; else otherDate">{{day}}</span>\n                        <ng-template #otherDate class="otherDate">{{day}}</ng-template>\n                    </ion-col>\n                    <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>\n                </ion-row>\n            </ion-grid>\n        </div>\n\n    </ion-card>\n\n\n    <ion-card id="card-background">\n        <ion-card-header id="schedule-header">\n            Schedule for\n            <div *ngIf="selectedDate; else originalDate">{{selectedDate | date}}, </div>\n            <ng-template #originalDate>{{myDate | date}}, </ng-template>\n            {{kid.kidName}}\n        </ion-card-header>\n\n        <ion-card-content padding id="group-name">\n\n            GROUP {{kid.groupName}} ({{kid.groupID}})\n        </ion-card-content>\n\n        <ion-card-content id="schedule-details">\n            <div *ngIf="scheduleForDate?.length>0 ; else noClassToday">\n                <ion-list *ngFor="let item of scheduleForDate">\n\n                    At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date | date}}\n\n                </ion-list>\n            </div>\n            <ng-template #noClassToday>No Class Today</ng-template>\n        </ion-card-content>\n\n\n\n\n    </ion-card>\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
     ], ShowClassInfoKidComponent);
     return ShowClassInfoKidComponent;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=show-class-info-kid.js.map
@@ -1576,22 +1576,22 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(293);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_login_login__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_login_login__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_schedule_schedule__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_add_schedule_add_schedule__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_add_schedule_add_schedule__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_get_schedule_get_schedule__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_edit_schedule_details_edit_schedule_details__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_edit_schedule_details_edit_schedule_details__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_attendance_attendance__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_mark_attendance_mark_attendance__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_mark_attendance_for_group_mark_attendance_for_group__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_fees_fees__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_mark_attendance_mark_attendance__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_mark_attendance_for_group_mark_attendance_for_group__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_fees_fees__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_pay_fees_pay_fees__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_manage_classes_manage_classes__ = __webpack_require__(296);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_kids_kids__ = __webpack_require__(53);
@@ -1745,9 +1745,9 @@ var AppModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_login_login__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_login_login__ = __webpack_require__(204);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1958,7 +1958,7 @@ var AddClassesComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 51:
+/***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1968,7 +1968,7 @@ var AddClassesComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_schedule_schedule__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_attendance_attendance__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_fees_fees__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_fees_fees__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_kids_kids__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_performance_performance__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_groups_groups__ = __webpack_require__(54);
@@ -2086,10 +2086,10 @@ var HomePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ScheduleComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__add_schedule_add_schedule__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__add_schedule_add_schedule__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_schedule_details_edit_schedule_details__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_schedule_details_edit_schedule_details__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2246,7 +2246,7 @@ var KidsComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_edit_groups_edit_groups__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_add_groups_add_groups__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_show_class_info_kid_show_class_info_kid__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

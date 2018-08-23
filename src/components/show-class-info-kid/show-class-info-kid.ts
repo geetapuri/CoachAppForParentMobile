@@ -62,7 +62,7 @@ months[11] = "December";*/
     
     this.kid= this.navParams.get('selectedKid');
     this.parent = this.navParams.get('parent');
-    this.user= this.navParams.get('user');
+    this.user= this.navParams.get('role');
     //this.selectedGroup.groupID= this.kid.groupID;
     let groupName = this.kid.groupName;
     let kidName = this.kid.kidName;

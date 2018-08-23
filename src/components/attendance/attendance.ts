@@ -30,6 +30,7 @@ export class AttendanceComponent implements OnInit{
   public avatar_src;
   public parentAvatar;
   public groupName;
+  public groupID;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
     console.log('Hello AttendanceComponent Component');

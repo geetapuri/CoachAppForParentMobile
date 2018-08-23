@@ -157,7 +157,7 @@ export class GetDataFromSpringProvider {
       let options = new RequestOptions({ headers: headers });
       let body = {
         'kidID': kidID,
-        'date' : myDate
+        'strDate' : myDate
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
