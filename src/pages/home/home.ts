@@ -71,7 +71,7 @@ export class HomePage implements OnInit{
   }
   getKids(){
     console.log("in kids");
-    this.navCtrl.push(KidsComponent, {parent:this.parent});
+    this.navCtrl.push(KidsComponent, {parent:this.parent, role:this.user});
   }
 
   goToManageGroups(){

@@ -31,11 +31,13 @@ export class AttendanceComponent implements OnInit{
   public parentAvatar;
   public groupName;
   public groupID;
+  public user;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
     console.log('Hello AttendanceComponent Component');
     this.text = 'Hello World';
     this.parent= this.navParams.get('parent');
+    this.user = this.navParams.get('role');
 
 
   }

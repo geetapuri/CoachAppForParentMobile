@@ -31,6 +31,7 @@ export class FeesComponent implements OnInit{
   public parent;
   public avatar_src;
   public parentAvatar;
+  public user;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
     console.log('Hello FeesComponent Component');
