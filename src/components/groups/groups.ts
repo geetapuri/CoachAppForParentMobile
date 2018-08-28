@@ -26,6 +26,9 @@ export class GroupsComponent implements OnInit{
   text: string;
   public groupList;
   myDate: String = new Date().toISOString();
+  public parent;
+  public user;
+  public kidList;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello GroupsComponent Component');

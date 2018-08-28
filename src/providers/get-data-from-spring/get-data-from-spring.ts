@@ -161,7 +161,7 @@ export class GetDataFromSpringProvider {
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-      console.log("sending date as : " + body.date);
+      //console.log("sending date as : " + body.date);
       console.log("sending kidID as " + body.kidID);
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
      return this.http.post(`/getCalendarKidDate`, body, {headers: headers})
@@ -372,7 +372,7 @@ getKidsFeeParent(parent){
     let options = new RequestOptions({ headers: headers });
     let body = {
       'parentID': parent[0].parentID,
-      'date': date
+      'strDate': date
     }
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');

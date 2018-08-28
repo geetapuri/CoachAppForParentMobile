@@ -82,7 +82,8 @@ months[11] = "December";*/
     this.getCurrentMonthYear();
     
     console.log("getting schedule for today");
-    this.springData.getSchedule(this.myDate, this.kid.kidID).subscribe(
+    this.dateToSend = this.myDate.toISOString().split("T")[0];
+    this.springData.getSchedule(this.dateToSend, this.kid.kidID).subscribe(
       data => {
 
         this.scheduleForDate=data.returnSchedule;
@@ -221,7 +222,7 @@ months[11] = "December";*/
     this.selectedDate = this.currentYear + "-" + this.monthNum + "-" + day;
     console.log("selected date = " + this.selectedDate); 
     //this.dateToSend = new Date(this.selectedDate).toISOString();
-    this.dateToSend = '2018-7-5';
+    //this.dateToSend = '2018-7-5';
 
     this.springData.getSchedule(this.selectedDate, this.kid.kidID).subscribe(
       data => {

@@ -119,11 +119,11 @@ getAttendanceForKidGroup(item){
     );
   }
   
-  goToShowDatesForClass(selectedGroup){
+  /*goToShowDatesForClass(selectedGroup){
     console.log("goToShowClassAttendance");
     this.groupName=selectedGroup.groupName;
     this.groupID=selectedGroup.groupID;
-    this.springData.getScheduleForGroup(this.coach,selectedGroup.groupID).subscribe(
+    this.springData.getScheduleForGroup(this.parent,selectedGroup.groupID).subscribe(
       data => {
 
         this.scheduleList= data.Schedule;
@@ -135,7 +135,7 @@ getAttendanceForKidGroup(item){
     );
 
 
- }
+ }*/
  
  goBackHome(){
   console.log("going back to home page");

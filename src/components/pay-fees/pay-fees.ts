@@ -41,6 +41,7 @@ export class PayFeesComponent implements OnInit{
   public parent;
   public user;
   public kid;
+  
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello PayFeesComponent Component');
@@ -53,7 +54,7 @@ export class PayFeesComponent implements OnInit{
   }
 
   
-  viewFeePaid(){
+  viewFeePaid(item){
       this.selectedKid= item.kidName;
       this.springData.viewFeesForKid(item).subscribe(
         data => {

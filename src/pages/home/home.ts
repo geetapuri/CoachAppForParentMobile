@@ -48,6 +48,7 @@ export class HomePage implements OnInit{
   public avatar_src="assets/imgs/geeta.jpg";
   public parentAvatar;
   public myDate = new Date();
+  public dateToSend;
 
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
@@ -111,7 +112,8 @@ export class HomePage implements OnInit{
   getKidsListForToday(){
     console.log("getKidsListForToday");
     //get all the kids list from DB first
-    this.springData.getKidInfoParentToday(this.parent, this.myDate).subscribe(
+    this.dateToSend= this.myDate.toISOString().split("T")[0];
+    this.springData.getKidInfoParentToday(this.parent, this.dateToSend).subscribe(
       data => {
 
 
