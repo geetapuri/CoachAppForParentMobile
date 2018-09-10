@@ -8,6 +8,8 @@ import { LoginComponent } from '../components/login/login';
 import { GetDataFromSpringProvider } from '../providers/get-data-from-spring/get-data-from-spring'
 import { ScheduleComponent } from '../components/schedule/schedule';
 //import { ProgressComponent } from '../components/progress/progress';
+
+
 @Component({
   templateUrl: 'app.html'
 })

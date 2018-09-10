@@ -23,7 +23,7 @@ import { EditGroupsComponent } from './edit-groups/edit-groups';
 //import { ShowClassInfoKidComponent } from './show-class-info-kid/show-class-info-kid';
 import { Progress2Component } from './progress2/progress2';
 import { ShowClassInfoKidComponent } from './show-class-info-kid/show-class-info-kid';
-import { HomePage } from './../pages/home/home';
+import { HomePage } from '../pages/home/home';
 @NgModule({
 	declarations: [ScheduleComponent,
     AttendanceComponent,

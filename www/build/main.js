@@ -82,30 +82,36 @@ var AttendanceComponent = /** @class */ (function () {
         console.log("getKidList");
         this.springData.getKidInfoParent(this.parent).subscribe(function (data) {
             _this.kidList = data.kidList;
-        }, function (err) { return console.error(err); }, function () { return console.log('getGroupList completed'); });
+        }, function (err) { return console.error(err); }, function () { return console.log('getKidList completed'); });
     };
-    AttendanceComponent.prototype.goToShowDatesForClass = function (selectedGroup) {
-        var _this = this;
-        console.log("goToShowClassAttendance");
-        this.groupName = selectedGroup.groupName;
-        this.groupID = selectedGroup.groupID;
-        this.springData.getScheduleForGroup(this.coach, selectedGroup.groupID).subscribe(function (data) {
-            _this.scheduleList = data.Schedule;
-            // this.selectedKid= data.kidList[0];
-        }, function (err) { return console.error(err); }, function () { return console.log('getSchedule for Group completed'); });
-    };
+    /*goToShowDatesForClass(selectedGroup){
+      console.log("goToShowClassAttendance");
+      this.groupName=selectedGroup.groupName;
+      this.groupID=selectedGroup.groupID;
+      this.springData.getScheduleForGroup(this.parent,selectedGroup.groupID).subscribe(
+        data => {
+  
+          this.scheduleList= data.Schedule;
+         // this.selectedKid= data.kidList[0];
+  
+        },
+        err => console.error(err),
+        () => console.log('getSchedule for Group completed')
+      );
+  
+  
+   }*/
     AttendanceComponent.prototype.goBackHome = function () {
         console.log("going back to home page");
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */], { parent: this.parent, role: this.user });
     };
     AttendanceComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'attendance',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/'<!-- Generated template for the AttendanceComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> Attendance\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <div padding>\n        <div id="group-name">\n            <div padding>\n                Click Group to see Attendance\n            </div>\n            <ion-row *ngIf="kidList; else loading">\n                <button ion-button block id="list-row" *ngFor="let item of kidList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getAttendanceForKidGroup(item)">\n                  <div >{{item.kidName}} - {{ item.groupName }}</div>\n\n                </button>\n\n\n            </ion-row>\n        </div>\n\n        <div>\n            <ng-template #loading>\n                <ion-spinner name="bubbles">Loading Groups...</ion-spinner>\n            </ng-template>\n        </div>\n\n\n    </div>\n\n    <div padding>\n\n        <div padding *ngIf="attendanceList">\n            Showing Attendace for {{selectedKid}} -  {{groupName}}\n        </div>\n\n        <div *ngIf="attendanceList" class="scroll-list">\n\n\n\n            <button id="list-row" *ngFor="let item of attendanceList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}">\n              <div id="class-date">{{ item.date | date: \'fullDate\' }}</div>\n                <div padding> {{item.presentAbsent}} </div>\n\n            </button>\n\n        </div>\n    </div>\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/
+            selector: 'attendance',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/'<!-- Generated template for the AttendanceComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> Attendance\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <div padding>\n        <div id="group-name">\n            <div padding>\n                Click Kid to see Attendance\n            </div>\n            <ion-row *ngIf="kidList; else loading">\n                <button ion-button block id="list-row" *ngFor="let item of kidList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getAttendanceForKidGroup(item)">\n                  <div >{{item.kidName}} - {{ item.groupName }}</div>\n\n                </button>\n\n\n            </ion-row>\n        </div>\n\n        <div>\n            <ng-template #loading>\n                <ion-spinner name="bubbles">Loading Groups...</ion-spinner>\n            </ng-template>\n        </div>\n\n\n    </div>\n\n    <div padding>\n\n        <div padding *ngIf="attendanceList">\n            Showing Attendace for {{selectedKid}} - {{groupName}}\n        </div>\n\n        <div *ngIf="attendanceList" class="scroll-list">\n\n\n\n            <button id="list-row" *ngFor="let item of attendanceList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}">\n              <div id="class-date">{{ item.date  }}</div>\n                <div padding> {{item.presentAbsent}} </div>\n\n            </button>\n\n        </div>\n    </div>\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/attendance/attendance.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
     ], AttendanceComponent);
     return AttendanceComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=attendance.js.map
@@ -158,7 +164,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
             'test': 'test'
         };
         //return this.http.post(`http://172.20.10.2:8080/resourceLogin`,body, {headers: headers})
-        return this.http.post("/resourceLogin", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/resourceLogin", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getGroups = function (myDate) {
@@ -171,7 +177,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getGroups", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getGroups", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getPackages = function (myDate) {
@@ -184,7 +190,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getPackages", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getPackages", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.addSchedule = function (myDate, groupID, myTime) {
@@ -199,7 +205,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/addSchedule", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/addSchedule", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.addKid = function (kidName, groupID, packageID) {
@@ -214,7 +220,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/addKid", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/addKid", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.addGroup = function (groupName) {
@@ -227,7 +233,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/addGroup", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/addGroup", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getScheduleAll = function (myDate) {
@@ -238,7 +244,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getCalendarKidDate", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getCalendarKidDate", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getSchedule = function (myDate, kidID) {
@@ -251,10 +257,8 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         };
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-        console.log("sending date as : " + body.date);
-        console.log("sending kidID as " + body.kidID);
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getCalendarKidDate", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getCalendarKidDate", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getScheduleKid = function (kidID) {
@@ -267,7 +271,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getCalendarAllKid", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getCalendarAllKid", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.saveSchedule = function (item, myDate) {
@@ -284,7 +288,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/updateSchedule", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/updateSchedule", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getKids = function () {
@@ -297,7 +301,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getKids", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getKids", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.viewAttendanceForKid = function (item) {
@@ -310,7 +314,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/viewAttendanceKid", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/viewAttendanceKid", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.viewAttendanceForKidGroup = function (item) {
@@ -324,7 +328,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/viewAttendanceKidGroup", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/viewAttendanceKidGroup", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.checkAttendance = function (item) {
@@ -338,7 +342,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/checkAttendance", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/checkAttendance", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getKidsInGroup = function (item) {
@@ -351,7 +355,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getKidsInGroup", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getKidsInGroup", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.markAttendance = function (item, kidsList) {
@@ -366,7 +370,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/markAttendance", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/markAttendance", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.viewFeesForKid = function (item) {
@@ -379,7 +383,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/viewFees", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/viewFees", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.payFees = function (kidID, myDate) {
@@ -394,7 +398,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/payFees", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/payFees", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getKidInfoParent = function (parent) {
@@ -406,9 +410,8 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         };
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-        console.log("sending parent id as " + parent[0].parentID);
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getKidInfoParent", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getKidInfoParent", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getKidsFeeParent = function (parent) {
@@ -422,7 +425,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         console.log("sending parent id as " + parent[0].parentID);
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getKidsFeeParent", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getKidsFeeParent", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getKidInfoParentToday = function (parent, date) {
@@ -431,13 +434,13 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         var body = {
             'parentID': parent[0].parentID,
-            'date': date
+            'strDate': date
         };
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         console.log("sending parent id as " + parent[0].parentID);
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getKidInfoParentToday", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getKidInfoParentToday", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.updateKid = function (kid) {
@@ -452,7 +455,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/updateKid", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/updateKid", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.updateGroup = function (group) {
@@ -466,7 +469,7 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/updateGroup", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/updateGroup", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider.prototype.getParentID = function (user) {
@@ -480,15 +483,14 @@ var GetDataFromSpringProvider = /** @class */ (function () {
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         console.log("sending parent name as : " + user);
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-        return this.http.post("/getParentID", body, { headers: headers })
+        return this.http.post("https://coachingapp-203705.appspot.com/getParentID", body, { headers: headers })
             .map(function (data) { return data.json(); });
     };
     GetDataFromSpringProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], GetDataFromSpringProvider);
     return GetDataFromSpringProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=get-data-from-spring.js.map
@@ -987,10 +989,9 @@ var FeesComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'fees',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/'<!-- Generated template for the FeesComponent component -->\n<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> Fees\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n\n\n\n\n    <div padding>\n        <div *ngIf="kidsList">\n\n            <div>\n                <ion-row id="group-name">\n                    <ion-col >\n                        <div padding float-left>\n                            Kids - Groups\n                        </div>\n                    </ion-col>\n                    <ion-col>\n                        <div padding float-right> Fee Due </div>\n                    </ion-col>\n                </ion-row>\n\n\n                    \n\n\n            </div>\n\n\n            <button ion-button block id="list-row" *ngFor="let item of kidsList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getFeesForKid(item)">\n              <ion-col col-8><div float-left >{{ item.kidName }} {{item.groupName}}</div></ion-col>\n              <ion-col><div float-right id="fee-amount">{{ item.invoiceAmount}}</div></ion-col>\n              <ion-col><div float-right id ="invoice-due">{{ item.invoiceDue}}</div></ion-col>\n\n            </button>\n\n        </div>\n    </div>\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/fees/fees.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
     ], FeesComponent);
     return FeesComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=fees.js.map
@@ -1043,7 +1044,7 @@ var PayFeesComponent = /** @class */ (function () {
             _this.feeList = data.feeList;
         }, function (err) { return console.error(err); }, function () { return console.log('viewFeesKid completed'); });
     };
-    PayFeesComponent.prototype.viewFeePaid = function () {
+    PayFeesComponent.prototype.viewFeePaid = function (item) {
         var _this = this;
         this.selectedKid = item.kidName;
         this.springData.viewFeesForKid(item).subscribe(function (data) {
@@ -1198,7 +1199,7 @@ var PerformanceComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_groups_groups__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__groups_groups__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1233,7 +1234,7 @@ var EditGroupsComponent = /** @class */ (function () {
         console.log("save group Info");
         this.springData.updateGroup(this.group).subscribe(function (data) {
             _this.result = data.result;
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__components_groups_groups__["a" /* GroupsComponent */]);
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__groups_groups__["a" /* GroupsComponent */]);
         }, function (err) { return console.error(err); }, function () { return console.log('saveKidInfo completed'); });
     };
     EditGroupsComponent = __decorate([
@@ -1380,7 +1381,8 @@ var ShowClassInfoKidComponent = /** @class */ (function () {
         console.log("calling getCurrMonthYear");
         this.getCurrentMonthYear();
         console.log("getting schedule for today");
-        this.springData.getSchedule(this.myDate, this.kid.kidID).subscribe(function (data) {
+        this.dateToSend = this.myDate.toISOString().split("T")[0];
+        this.springData.getSchedule(this.dateToSend, this.kid.kidID).subscribe(function (data) {
             _this.scheduleForDate = data.returnSchedule;
             console.log("schedule for date list has come as: " +
                 data.returnSchedule);
@@ -1488,7 +1490,7 @@ var ShowClassInfoKidComponent = /** @class */ (function () {
         this.selectedDate = this.currentYear + "-" + this.monthNum + "-" + day;
         console.log("selected date = " + this.selectedDate);
         //this.dateToSend = new Date(this.selectedDate).toISOString();
-        this.dateToSend = '2018-7-5';
+        //this.dateToSend = '2018-7-5';
         this.springData.getSchedule(this.selectedDate, this.kid.kidID).subscribe(function (data) {
             _this.scheduleForDate = data.returnSchedule;
             console.log("schedule for date list has come as: " +
@@ -1505,10 +1507,9 @@ var ShowClassInfoKidComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'show-class-info-kid',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> DETAILS\n                    </ion-col>\n                    <ion-col>\n                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-card>\n        <div class="calendar-header">\n            <ion-row class="calendar-month">\n                <ion-col col-2 (click)="goToLastMonth()">\n                    <ion-icon name="arrow-back"></ion-icon>\n                </ion-col>\n                <ion-col col-8>{{currentMonth}} {{currentYear}}</ion-col>\n                <ion-col col-2 (click)="goToNextMonth()">\n                    <ion-icon name="arrow-forward"></ion-icon>\n                </ion-col>\n            </ion-row>\n        </div>\n        <div class="calendar-body">\n            <ion-grid>\n                <ion-row class="calendar-weekday">\n                    <ion-col>Su</ion-col>\n                    <ion-col>Mo</ion-col>\n                    <ion-col>Tu</ion-col>\n                    <ion-col>We</ion-col>\n                    <ion-col>Th</ion-col>\n                    <ion-col>Fr</ion-col>\n                    <ion-col>Sa</ion-col>\n                </ion-row>\n                <ion-row class="calendar-date">\n                    <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>\n                    <ion-col col-1 id="col-{{day}}" *ngFor="let day of daysInThisMonth" (click)="clickedDate(day)">\n                        <span class="currentDate" *ngIf="currentDate === day; else otherDate">{{day}}</span>\n                        <ng-template #otherDate class="otherDate">{{day}}</ng-template>\n                    </ion-col>\n                    <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>\n                </ion-row>\n            </ion-grid>\n        </div>\n\n    </ion-card>\n\n\n    <ion-card id="card-background">\n        <ion-card-header id="schedule-header">\n            Schedule for\n            <div *ngIf="selectedDate; else originalDate">{{selectedDate | date}}, </div>\n            <ng-template #originalDate>{{myDate | date}}, </ng-template>\n            {{kid.kidName}}\n        </ion-card-header>\n\n        <ion-card-content padding id="group-name">\n\n            GROUP {{kid.groupName}} ({{kid.groupID}})\n        </ion-card-content>\n\n        <ion-card-content id="schedule-details">\n            <div *ngIf="scheduleForDate?.length>0 ; else noClassToday">\n                <ion-list *ngFor="let item of scheduleForDate">\n\n                    At : {{item.time}} <br> GROUP: {{item.groupName}}<br> DATE: {{item.date | date}}\n\n                </ion-list>\n            </div>\n            <ng-template #noClassToday>No Class Today</ng-template>\n        </ion-card-content>\n\n\n\n\n    </ion-card>\n</ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/components/show-class-info-kid/show-class-info-kid.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavParams */]])
     ], ShowClassInfoKidComponent);
     return ShowClassInfoKidComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=show-class-info-kid.js.map
@@ -2061,7 +2062,8 @@ var HomePage = /** @class */ (function () {
         var _this = this;
         console.log("getKidsListForToday");
         //get all the kids list from DB first
-        this.springData.getKidInfoParentToday(this.parent, this.myDate).subscribe(function (data) {
+        this.dateToSend = this.myDate.toISOString().split("T")[0];
+        this.springData.getKidInfoParentToday(this.parent, this.dateToSend).subscribe(function (data) {
             _this.kidList = data.Schedule;
         }, function (err) { return console.error(err); }, function () { return console.log('getKidsListForToday   completed'); });
     };
@@ -2073,10 +2075,9 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/pages/home/home.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img alt="logo" height="40" src="assets/imgs/axar.png"> Parent App\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <div padding id="top-row">\n        <ion-grid>\n            <ion-row>\n                <ion-col no-padding col-2 ion-item no-lines>\n                    <div>\n                        <ion-avatar item-left>\n                            <img src="{{parentAvatar}}" alt="parent picture">\n                        </ion-avatar>\n                    </div>\n                </ion-col>\n                <ion-col col-5>\n                    <div padding>\n                        <div>\n                            <ion-img src="assets/imgs/groups.png" (click)="goToGroups()">\n                            </ion-img>\n                        </div>\n                        <br>\n                        <div>\n                            All Classes\n                        </div>\n                    </div>\n\n\n                </ion-col>\n                <ion-col col id="kids-pic">\n                    <div padding id="activities-image">\n                        <img src="assets/imgs/activities.png">\n                    </div>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <ion-content>\n        <ion-card id="card-background">\n\n            <div padding id="class-for-today">\n                Classes for Today\n            </div>\n\n            <div padding>\n                <ion-row *ngIf="kidList; else loading">\n                    <button ion-button block id="list-row" *ngFor="let item of kidList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" >\n                      <div >\n                        {{item.kidName }} - {{ item.groupName }} AT {{item.time}}\n                      </div>\n                    </button> {{kidList.length}}  class(es) today\n\n                </ion-row>\n            </div>\n\n\n\n            <div>\n                <ng-template #noResult>\n                    No Result {{kidList.length}}\n                </ng-template>\n                <ng-template #loading>\n                    <ion-spinner name="bubbles">Loading Groups...</ion-spinner>\n                </ng-template>\n            </div>\n\n        </ion-card>\n\n        <ion-card id="card-background">\n\n            <div padding id="menu">\n                Menu\n            </div>\n            <div>\n                <ion-grid>\n                    <ion-row>\n                   \n                        <ion-col>\n                            <div padding>\n                                <div>\n                                    <ion-img src="assets/imgs/attendance.png" (click)="goToAttendance()">\n                                    </ion-img>\n                                </div>\n                                <br>\n                                <div>\n                                    Attendance\n                                </div>\n                            </div>\n\n                        </ion-col>\n                        <ion-col>\n                            <div padding>\n                                <div>\n                                    <ion-img src="assets/imgs/fee.png" (click)="goToFees()">\n                                    </ion-img>\n                                </div>\n                                <br>\n                                <div>\n                                    Fees\n                                </div>\n                            </div>\n\n                        </ion-col>\n                    </ion-row>\n                    <ion-row>\n\n                     \n                        <ion-col>\n                            <div padding>\n                                <div>\n                                    <ion-img src="assets/imgs/events.png" (click)="goToEvents()">\n                                    </ion-img>\n                                </div>\n                                <br>\n                                <div>\n                                    Events\n                                </div>\n                            </div>\n                        </ion-col>\n                        <ion-col>\n                            <div padding>\n                                <div>\n                                    <ion-img src="assets/imgs/performance.png" (click)="goToPerformance()">\n                                    </ion-img>\n                                </div>\n                                <br>\n                                <div>\n                                    Performance\n                                </div>\n                            </div>\n\n                        </ion-col>\n                    </ion-row>\n\n                </ion-grid>\n            </div>\n\n        </ion-card>\n\n    </ion-content>'/*ion-inline-end:"/Users/geetapuri/Technology/IonicCLI/CoachAppForParentMobile/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_get_data_from_spring_get_data_from_spring__["a" /* GetDataFromSpringProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -2246,9 +2247,9 @@ var KidsComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_get_data_from_spring_get_data_from_spring__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_edit_groups_edit_groups__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_add_groups_add_groups__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_show_class_info_kid_show_class_info_kid__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__edit_groups_edit_groups__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__add_groups_add_groups__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__show_class_info_kid_show_class_info_kid__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2295,11 +2296,11 @@ var GroupsComponent = /** @class */ (function () {
     };
     GroupsComponent.prototype.goToEditGroupDetails = function (selectedGroup) {
         console.log("edit group");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__components_edit_groups_edit_groups__["a" /* EditGroupsComponent */], { selectedGroup: selectedGroup });
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__edit_groups_edit_groups__["a" /* EditGroupsComponent */], { selectedGroup: selectedGroup });
     };
     GroupsComponent.prototype.addGroup = function () {
         console.log("add Group");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__components_add_groups_add_groups__["a" /* AddGroupsComponent */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__add_groups_add_groups__["a" /* AddGroupsComponent */]);
     };
     GroupsComponent.prototype.goBackHome = function () {
         console.log("going back to home page");
@@ -2314,7 +2315,7 @@ var GroupsComponent = /** @class */ (function () {
     };
     GroupsComponent.prototype.goToShowKidClasses = function (selectedKid) {
         console.log("Show kid Classes, calling ShowClassInfoComponent now");
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__components_show_class_info_kid_show_class_info_kid__["a" /* ShowClassInfoKidComponent */], { selectedKid: selectedKid, parent: this.parent, role: this.user });
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__show_class_info_kid_show_class_info_kid__["a" /* ShowClassInfoKidComponent */], { selectedKid: selectedKid, parent: this.parent, role: this.user });
     };
     GroupsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

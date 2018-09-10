@@ -1,9 +1,9 @@
 import { Component , OnInit} from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
-import { EditGroupsComponent} from '../../components/edit-groups/edit-groups';
-import { AddGroupsComponent} from '../../components/add-groups/add-groups';
-import { ShowClassInfoKidComponent} from '../../components/show-class-info-kid/show-class-info-kid';
+import { EditGroupsComponent} from '../edit-groups/edit-groups';
+import { AddGroupsComponent} from '../add-groups/add-groups';
+import { ShowClassInfoKidComponent} from '../show-class-info-kid/show-class-info-kid';
 import { HomePage } from '../../pages/home/home';
 
 

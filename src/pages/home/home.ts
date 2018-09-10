@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController , NavParams} from 'ionic-angular';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { ScheduleComponent } from '../../components/schedule/schedule';
 import { AttendanceComponent } from '../../components/attendance/attendance';
 import { FeesComponent } from '../../components/fees/fees';
@@ -113,7 +113,7 @@ export class HomePage implements OnInit{
     console.log("getKidsListForToday");
     //get all the kids list from DB first
     this.dateToSend= this.myDate.toISOString().split("T")[0];
-    this.springData.getKidInfoParentToday(this.parent, this.dateToSend).subscribe(
+    this.springData.getKidInfoParentToday(this.parent,this.dateToSend).subscribe(
       data => {
 
 

@@ -370,7 +370,7 @@ getKidInfoParentToday(parent, date){
     let options = new RequestOptions({ headers: headers });
     let body = {
       'parentID': parent[0].parentID,
-      'date': date
+      'strDate': date
     }
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');

@@ -115,7 +115,7 @@ getAttendanceForKidGroup(item){
 
       },
       err => console.error(err),
-      () => console.log('getGroupList completed')
+      () => console.log('getKidList completed')
     );
   }
   

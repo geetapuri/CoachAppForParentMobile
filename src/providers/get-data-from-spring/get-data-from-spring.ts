@@ -37,7 +37,7 @@ export class GetDataFromSpringProvider {
 
 
     //return this.http.post(`http://172.20.10.2:8080/resourceLogin`,body, {headers: headers})
-    return this.http.post(`/resourceLogin`, body, { headers: headers })
+    return this.http.post(`https://coachingapp-203705.appspot.com/resourceLogin`, body, { headers: headers })
     .map(data  => data.json());
 
   }
@@ -54,7 +54,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getGroups`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getGroups`, body, {headers: headers})
       .map(data => data.json());
 
 
@@ -72,7 +72,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getPackages`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getPackages`, body, {headers: headers})
       .map(data => data.json());
 
 
@@ -92,7 +92,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/addSchedule`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/addSchedule`, body, {headers: headers})
       .map(data => data.json());
 
 
@@ -112,7 +112,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/addKid`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/addKid`, body, {headers: headers})
       .map(data => data.json());
 
 
@@ -130,12 +130,12 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/addGroup`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/addGroup`, body, {headers: headers})
       .map(data => data.json());
 
 
   }
-
+  
   getScheduleAll(myDate){
     console.log("in show schedule");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -147,9 +147,10 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
       
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getCalendarKidDate`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getCalendarKidDate`, body, {headers: headers})
       .map(data => data.json());
   }
+
 
   getSchedule(myDate, kidID){
     console.log("in show schedule");
@@ -161,13 +162,12 @@ export class GetDataFromSpringProvider {
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-      //console.log("sending date as : " + body.date);
-      console.log("sending kidID as " + body.kidID);
+
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getCalendarKidDate`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getCalendarKidDate`, body, {headers: headers})
       .map(data => data.json());
   }
-
+  
   getScheduleKid(kidID){
     console.log("in getScheduleKid, kidID = " + kidID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -179,7 +179,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getCalendarAllKid`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getCalendarAllKid`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -198,7 +198,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/updateSchedule`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/updateSchedule`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -213,7 +213,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getKids`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getKids`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -229,10 +229,10 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/viewAttendanceKid`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/viewAttendanceKid`, body, {headers: headers})
       .map(data => data.json());
   }
-  
+ 
   viewAttendanceForKidGroup(item){
     console.log(" in view attendance for kid, kidID = " + item.kidID);
 
@@ -246,7 +246,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/viewAttendanceKidGroup`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/viewAttendanceKidGroup`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -263,7 +263,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/checkAttendance`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/checkAttendance`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -278,7 +278,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getKidsInGroup`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/getKidsInGroup`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -296,7 +296,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/markAttendance`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/markAttendance`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -311,7 +311,7 @@ export class GetDataFromSpringProvider {
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/viewFees`, body, {headers: headers})
+     return this.http.post(`https://coachingapp-203705.appspot.com/viewFees`, body, {headers: headers})
       .map(data => data.json());
   }
 
@@ -328,7 +328,7 @@ export class GetDataFromSpringProvider {
         headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-      return this.http.post(`/payFees`, body, {headers: headers})
+      return this.http.post(`https://coachingapp-203705.appspot.com/payFees`, body, {headers: headers})
         .map(data => data.json());
 
   }
@@ -342,14 +342,13 @@ export class GetDataFromSpringProvider {
     }
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-    console.log("sending parent id as " + parent[0].parentID);
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`/getKidInfoParent`, body, {headers: headers})
+  return this.http.post(`https://coachingapp-203705.appspot.com/getKidInfoParent`, body, {headers: headers})
     .map(data => data.json());
   }
-
-getKidsFeeParent(parent){
+  
+  getKidsFeeParent(parent){
     console.log("In get Kids InfoParent");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -361,12 +360,11 @@ getKidsFeeParent(parent){
     console.log("sending parent id as " + parent[0].parentID);
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`/getKidsFeeParent`, body, {headers: headers})
+  return this.http.post(`https://coachingapp-203705.appspot.com/getKidsFeeParent`, body, {headers: headers})
     .map(data => data.json());
   }
 
-
-  getKidInfoParentToday(parent, date){
+getKidInfoParentToday(parent, date){
     console.log("In get Kids InfoParent");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -379,11 +377,10 @@ getKidsFeeParent(parent){
     console.log("sending parent id as " + parent[0].parentID);
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`/getKidInfoParentToday`, body, {headers: headers})
+  return this.http.post(`https://coachingapp-203705.appspot.com/getKidInfoParentToday`, body, {headers: headers})
     .map(data => data.json());
   }
-  
-  
+
   updateKid(kid){
     console.log("In update Kid Info");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -391,13 +388,13 @@ getKidsFeeParent(parent){
     let body = {
       'kidID': kid.kidID,
       'kidName': kid.kidName,
-      'groupID':kid.groupID
+      'groupID': kid.groupID
     }
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`/updateKid`, body, {headers: headers})
+  return this.http.post(`https://coachingapp-203705.appspot.com/updateKid`, body, {headers: headers})
     .map(data => data.json());
 
   }
@@ -415,10 +412,9 @@ updateGroup(group){
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`/updateGroup`, body, {headers: headers})
+  return this.http.post(`https://coachingapp-203705.appspot.com/updateGroup`, body, {headers: headers})
     .map(data => data.json());
 }
-
 getParentID(user){
   console.log("In getParentID ");
   let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -431,9 +427,8 @@ getParentID(user){
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
     console.log("sending parent name as : " + user);
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`/getParentID`, body, {headers: headers})
+  return this.http.post(`https://coachingapp-203705.appspot.com/getParentID`, body, {headers: headers})
     .map(data => data.json());
 }
-
 
 }

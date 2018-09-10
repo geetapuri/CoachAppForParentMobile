@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 /**
  * Generated class for the LoginComponent component.

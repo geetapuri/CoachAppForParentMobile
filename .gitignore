@@ -1,0 +1,11 @@
+platforms/*
+plugins/*
+node_modules/*
+.idea/*
+.config.xml
+.package*
+www/*
+.sourcemaps/*
+resources/*
+
+

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
-import { GroupsComponent} from '../../components/groups/groups';
+import { GroupsComponent} from '../groups/groups';
 
 
 /**
